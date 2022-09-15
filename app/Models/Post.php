@@ -12,7 +12,9 @@ class Post extends Model
     protected $fillable = [
         'nom',
         'prenom',
-        'file',
+        'poste',
+        'email',
+        'code',
 
 
     ];

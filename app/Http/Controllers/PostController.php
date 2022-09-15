@@ -30,11 +30,17 @@ class PostController extends Controller
         request()->validate([
             'nom' => 'required',
             'prenom' => 'required',
+            'poste' => 'required',
+            'email' => 'required',
+            'code' => 'required',
         ]);
 
         Post::create([
             'nom' => request('nom'),
-            'prenom' => request('prenom')
+            'prenom' => request('prenom'),
+            'poste' =>request('poste'),
+            'email' =>request('email'),
+            'code' =>request('code'),
         ]);
 
         return redirect('/posts');
@@ -53,11 +59,17 @@ class PostController extends Controller
         request()->validate([
             'nom' => 'required',
             'prenom' => 'required',
+            'poste' => 'required',
+            'email' => 'required|email',
         ]);
 
         $post->update([
             'nom' => request('nom'),
             'prenom' => request('prenom'),
+            'poste' => request('poste'),
+            'email' => request('email'),
+            'code' => request('code'),
+            
         ]);
 
         return redirect('/posts')->with('Modification réussie');
