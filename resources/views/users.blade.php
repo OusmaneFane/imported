@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
     <div class="container pt-5">
@@ -24,7 +25,7 @@
             <div class="col-md-12 mb-1">
                 <h1 class="lg-9">Liste</h1>
             </div>
-            <div class="col-md-12 ">
+            <div class="col-md-12 table table-striped table-hover table table-bordered">
                 <table class="table_id" id="table_id">
                     <thead>
                       <tr>
@@ -50,20 +51,20 @@
                         @foreach ($users as $user)
                             <tr>
                                 <th scope="row">{{ $user->id }}</th>
-                                <td>{{ $user->no }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->date }}</td>
-                                <td>{{ $user->onduty }}</td>
-                                <td>{{ $user->offduty }}</td>
-                                <td>{{ $user->clockin }}</td>
-                                <td>{{ $user->clockout }}</td>
-                                <td>{{ $user->normal }}</td>
-                                <td>{{ $user->realtime }}</td>
-                                <td>{{ $user->late }}</td>
-                                <td>{{ $user->early }}</td>
-                                <td>{{ $user->absent }}</td>
-                                <td>{{ $user->ottime }}</td>
-                                <td>{{ $user->worktime }}</td>
+                                <td>{{ $user->no        }}</td>
+                                <td>{{ $user->name      }}</td>
+                                <td>{{ $user->date      }}</td>
+                                <td>{{ $user->onduty    }}</td>
+                                <td>{{ $user->offduty   }}</td>
+                                <td>{{ $user->clockin   }}</td>
+                                <td>{{ $user->clockout  }}</td>
+                                <td>{{ $user->normal    }}</td>
+                                <td>{{ $user->realtime  }}</td>
+                                <td>{{ $user->late      }}</td>
+                                <td>{{ $user->early     }}</td>
+                                <td>{{ $user->absent    }}</td>
+                                <td>{{ $user->ottime    }}</td>
+                                <td>{{ $user->worktime  }}</td>
                             </tr>
                         @endforeach
                         @else
