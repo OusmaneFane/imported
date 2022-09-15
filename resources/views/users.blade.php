@@ -14,17 +14,17 @@
             </div>
 
 
-            <div class="col-lg-12 grid-margin stretch-card">
+            <div class="col-lg-12 grid-margin stretch-card ">
                 <a href="{{ route('import-data') }}" class="bg-yellow-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
-                rounded hover:shadow">Importer</a>
+                rounded hover:shadow mt-2">Importer</a>
                 </div>
 
         </div>
         <div class="row">
-            <div class="col-md-12 mb-2">
-                <h1></h1>
+            <div class="col-md-12 mb-1">
+                <h1 class="lg-9">Liste</h1>
             </div>
-            <div class="col-md-12 mt-5">
+            <div class="col-md-12 ">
                 <table class="table_id" id="table_id">
                     <thead>
                       <tr>
