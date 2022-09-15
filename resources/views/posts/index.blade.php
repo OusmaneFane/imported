@@ -19,24 +19,21 @@
             {{-- <a href="{{ route('export-data') }}" class="bg-gray-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
             rounded hover:shadow">Exporter</a> --}}
         </p>
-        {{-- <p class="card-description">
-          Add class <code>.table-striped</code>
-        </p> --}}
         <div class="table-responsive table table-striped table-hover">
-        <table class="table_id" id="table_id">
+            <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered" style="width: 100%;" aria-describedby="example_info">
             <thead>
               <tr>
-                <th>
-                  Profil
-                </th>
-                <th>
-                  Nom
-                </th>
-                <th>
-                  Prenom
-                </th>
-                <th>
-                    Poste
+                 <th>
+                    Profil
+                  </th>
+                  <th>
+                     Nom
+                  </th>
+                  <th>
+                     Prenom
+                  </th>
+                  <th>
+                     Poste
                   </th>
                   <th>
                     Email
@@ -44,19 +41,20 @@
                   <th>
                     Code
                   </th>
-                <th>
-                      Modification
-                </th>
-                <th>
+                  <th>
                     Modification
-              </th>
+                  </th>
+                  <th>
+                    Modification
+                  </th>
               </tr>
             </thead>
             <tbody>
 
              @foreach ($posts as $post)
 
-                  <tr>
+
+                  <tr class="foobar">
                      <td class="py-1">
                         <img src="images/face{{ $post->id }}.jpg" alt="image{{ $post->id }}">
                     </td>
@@ -79,6 +77,7 @@
                         </form>
                     </td>
                   </tr>
+
               @endforeach
 
             </tbody>

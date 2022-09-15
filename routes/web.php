@@ -19,7 +19,7 @@ use App\Http\Controllers\UserController;
 
 
 
-Route::get('/users', [UserController::class, 'list']);
+Route::get('/users', [UserController::class, 'list'])->name('list');
 Route::post('/import_user', [UserController::class, 'import_user'])->name('import_user');
 
 // import - Export
