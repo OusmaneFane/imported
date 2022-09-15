@@ -1,0 +1,80 @@
+@import "fonts.css";
+
+body{
+    background: #c38209;
+}
+#container{
+    width:500px;
+    margin:0 auto;
+    margin-top:5%;
+}
+
+/* B
+ordered form */
+form {
+    width:auto;
+    padding: 30px;
+    border: 1px solid black;
+    background: silver;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+#container h1{
+    width: 38%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+input[type=submit] {
+    background-color: #c38209;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+input[type=submit]:hover {
+    background-color: white;
+    color: red;
+    border: 3px solid #53af57;
+}
+
+/* #logo {
+    text-align: center;
+    clip-path: ellipse(25% 50%);
+} */
+h1 {
+    color: black;
+    font-family: OpenSans-Regular;
+    src: url(fonts/OpenSans-Regular.ttf);
+}
+@font-face { 
+    font-family: GenBkBasB;
+    src: url(fonts/GenBkBasB.ttf);
+}
+
+@font-face {
+    font-family: YesevaOne-Regular_v2;
+    src: url(fonts/YesevaOne-Regular_v2.otf);
+}
+
+@font-face {
+    font-family: Lato-Regular;
+    src: url(fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+    font-family: OpenSans-Regular;
+    src: url(fonts/OpenSans-Regular.ttf);
+}
