@@ -83,15 +83,12 @@ class PostController extends Controller
         return redirect('/posts');
     }
 
-    // public function photos()
-    // {
-    //     request()->validate([
-    //         'nom' => 'required',
-    //         'prenom' => 'required',
+    public function verified()
+    {
+        return view('posts.verified');
+    }
 
-    //     ]);
-    // }
-
+    
     public function importUsers(Request $request)
     {
 

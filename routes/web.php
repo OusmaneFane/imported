@@ -15,6 +15,8 @@ use App\Http\Controllers\UserController;
  Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('destroy');
 // Route::post('/posts/image', [PostController::class, 'photos']);
  Route::get('/posts/importe', [PostController::class, 'importUsers'])->name('import-data');
+
+ Route::get('/posts/verified', [UserController::class, 'verified'])->name('verified');
 // Route::get('/posts/export', [PostController::class, 'exportUsers'])->name('export-data');
 
 

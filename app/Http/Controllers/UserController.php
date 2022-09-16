@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Imports\UsersImport;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
@@ -23,6 +24,17 @@ class UserController extends Controller
         Excel::import(new UsersImport, $request->file('excel_file'));
         return redirect()->back()->with('success', 'Données Inséreer avec succès');
     }
+    public function verified()
+    {
+
+            // $users = DB::select('select * from users where no = 0001');
+
+            // foreach ($users as $user) {
+    // echo $user->name;
+         $users = User::get();
+        return view ('posts.verified', ['users'=>$users]);
+    //}
 
 
+}
 }

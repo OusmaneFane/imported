@@ -12,18 +12,25 @@
                       @if(Session::has('success'))
                             </div>
                             <div class="alert alert-success" role="alert">
-                            {{ Session::get('success') }}
-                    </div>
+                               {{ Session::get('success') }}
+                            </div>
                      @endif
             </div>
-
-            <div class="col-lg-12 grid-margin stretch-card ">
-                <a href="{{ route('import-data') }}" class="bg-yellow-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
-                rounded hover:shadow mt-2">Importer</a>
-                </div>
-                <div class="col-md-12 mb-1">
-                    <h1 class="lg-9">Liste</h1>
-                </div>
+            <div class="col-md-12">
+                <form class="row g-3" action="{{ route('import_user') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="col-auto">
+                      <label class="visually-hidden">Excel</label>
+                      <input type="file" class="form-control" name="excel_file" >
+                    </div>
+                    <div class="col-auto">
+                      <button type="submit" class="btn btn-primary mb-2">Insérer le fichier</button>
+                    </div>
+                    @error('excel_file')
+                   <span class="text-danger">{{ $message }}</span>
+                   @enderror
+                  </form>
+            </div>
 
 
         </div>
@@ -37,11 +44,11 @@
                         <th scope="col">no</th>
                         <th scope="col">Nom</th>
                         <th scope="col">Date</th>
-                        <th scope="col">onduty</th>
-                        <th scope="col">offduty</th>
+                        {{-- <th scope="col">onduty</th>
+                        <th scope="col">offduty</th> --}}
                         <th scope="col">clockin</th>
                         <th scope="col">Clockout</th>
-                        <th scope="col">normal</th>
+                        {{-- <th scope="col">normal</th> --}}
                         <th scope="col">realtime</th>
                         <th scope="col">late</th>
                         <th scope="col">early</th>
@@ -58,11 +65,11 @@
                                 <td>{{ $user->no        }}</td>
                                 <td>{{ $user->name      }}</td>
                                 <td>{{ $user->date      }}</td>
-                                <td>{{ $user->onduty    }}</td>
-                                <td>{{ $user->offduty   }}</td>
+                                {{-- <td>{{ $user->onduty    }}</td>
+                                <td>{{ $user->offduty   }}</td> --}}
                                 <td>{{ $user->clockin   }}</td>
                                 <td>{{ $user->clockout  }}</td>
-                                <td>{{ $user->normal    }}</td>
+                                {{-- <td>{{ $user->normal    }}</td> --}}
                                 <td>{{ $user->realtime  }}</td>
                                 <td>{{ $user->late      }}</td>
                                 <td>{{ $user->early     }}</td>

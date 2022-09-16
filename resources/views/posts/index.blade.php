@@ -35,9 +35,9 @@
                   <th>
                      Poste
                   </th>
-                  <th>
+                  {{-- <th>
                     Email
-                  </th>
+                  </th> --}}
                   <th>
                     Code
                   </th>
@@ -59,10 +59,10 @@
                         <img src="images/face{{ $post->id }}.jpg" alt="image{{ $post->id }}">
                     </td>
 
-                    <td>{{ $post->nom }}</td>
+                    <td><a href="/posts/verified/{{ $user->name }}">{{  $post->nom  }}</a></td>
                     <td>{{ $post->prenom }}</td>
                     <td>{{ $post->poste }}</td>
-                    <td>{{ $post->email }}</td>
+                    {{-- <td>{{ $post->email }}</td> --}}
                     <td>{{ $post->code }}</td>
                     <td>
                         <a href="/posts/{{ $post->id }}/edit" class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
