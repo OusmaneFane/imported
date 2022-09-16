@@ -88,6 +88,11 @@ class PostController extends Controller
         return view('posts.verified');
     }
 
+    public function filtre() {
+
+        return view('posts.filtre');
+    }
+
     
     public function importUsers(Request $request)
     {

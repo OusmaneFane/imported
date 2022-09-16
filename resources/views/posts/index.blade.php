@@ -59,7 +59,7 @@
                         <img src="images/face{{ $post->id }}.jpg" alt="image{{ $post->id }}">
                     </td>
 
-                    <td><a href="/posts/verified/{{ $user->name }}">{{  $post->nom  }}</a></td>
+                    <td><a href="/posts/verified/{{  $post->code  }}">{{  $post->nom  }}</a></td>
                     <td>{{ $post->prenom }}</td>
                     <td>{{ $post->poste }}</td>
                     {{-- <td>{{ $post->email }}</td> --}}

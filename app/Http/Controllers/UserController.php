@@ -6,6 +6,7 @@ use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpParser\Builder\Use_;
 
 class UserController extends Controller
 {
@@ -24,17 +25,11 @@ class UserController extends Controller
         Excel::import(new UsersImport, $request->file('excel_file'));
         return redirect()->back()->with('success', 'Données Inséreer avec succès');
     }
-    public function verified()
+    public function verified($id)
     {
+         $users = User::where('no', $id)->get();
+         return view ('posts.verified', ['users'=>$users]);
 
-            // $users = DB::select('select * from users where no = 0001');
+    }
 
-            // foreach ($users as $user) {
-    // echo $user->name;
-         $users = User::get();
-        return view ('posts.verified', ['users'=>$users]);
-    //}
-
-
-}
 }

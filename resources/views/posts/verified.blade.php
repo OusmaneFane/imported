@@ -5,14 +5,19 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
 
-<h1>{{ $user->no }}</h1>
+    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <a href="/posts/filtre" type="button" class="btn btn-success">Absence</a>
+        <a href="/posts/filtre" type="button" class="btn btn-warning">Retard</a>
+        <a href="/posts/filtre" type="button" class="btn btn-danger">Right</a>
+    </div>
+
 <div class="row">
 
     <div class="table-responsive table table-striped table-hover">
         <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
             <thead>
               <tr>
-                <th scope="col">ID</th>
+                {{-- <th scope="col">ID</th> --}}
                 <th scope="col">no</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Date</th>
@@ -30,10 +35,9 @@
               </tr>
             </thead>
             <tbody>
-            @if(count($users))
                 @foreach ($users as $user)
                     <tr>
-                        <th scope="row">{{ $user->id }}</th>
+                        {{-- <th scope="row">{{ $user->id }}</th> --}}
                         <td>{{ $user->no        }}</td>
                         <td>{{ $user->name      }}</td>
                         <td>{{ $user->date      }}</td>
@@ -50,11 +54,7 @@
                         <td>{{ $user->worktime  }}</td>
                     </tr>
                 @endforeach
-                @else
-                    <tr>
-                        <td colspan="3">Aucune donnée trouvée</td>
-                    </tr>
-            @endif
+
             </tbody>
           </table>
     </div>

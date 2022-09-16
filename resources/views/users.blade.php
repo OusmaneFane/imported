@@ -40,7 +40,7 @@
                 <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
                     <thead>
                       <tr>
-                        <th scope="col">ID</th>
+                        {{-- <th scope="col">ID</th> --}}
                         <th scope="col">no</th>
                         <th scope="col">Nom</th>
                         <th scope="col">Date</th>
@@ -61,7 +61,7 @@
                     @if(count($users))
                         @foreach ($users as $user)
                             <tr>
-                                <th scope="row">{{ $user->id }}</th>
+                                {{-- <th scope="row">{{ $user->id }}</th> --}}
                                 <td>{{ $user->no        }}</td>
                                 <td>{{ $user->name      }}</td>
                                 <td>{{ $user->date      }}</td>
