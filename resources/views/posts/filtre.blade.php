@@ -6,34 +6,10 @@
 
 
     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-        <a href="?filtre=absence" type="button " class="btn btn-success">Absence</a>
-        <a href="?filtre=retard" type="button" class="btn btn-warning">Retard</a>
-        <a type="button" class="btn btn-danger">Right</a>
+        <a href="/posts/filtre" type="button " class="btn btn-success">Absence</a>
+        <button type="button" class="btn btn-warning">Retard</button>
+        <button type="button" class="btn btn-danger">Right</button>
     </div>
-
-    <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
-        <thead>
-          <tr>
-            {{-- <th scope="col">ID</th> --}}
-            <th scope="col">Type</th>
-            <th scope="col">Nombre</th>
-         </tr>
-        </thead>
-         <tbody>
-            <tr>
-                <td>Nombre d'absence</td>
-                <td>{{ $nbre_absent }}</td>
-            </tr>
-            <tr>
-                <td>Nombre de retard</td>
-                <td>{{ $nbre_retard }}</td>
-            </tr>
-            <tr>
-                <td>worktime</td>
-                <td>{{ $worktime }}</td>
-            </tr>
-         </tbody>
-
 
 <div class="row">
 

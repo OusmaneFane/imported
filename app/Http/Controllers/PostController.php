@@ -69,7 +69,7 @@ class PostController extends Controller
             'poste' => request('poste'),
             'email' => request('email'),
             'code' => request('code'),
-            
+
         ]);
 
         return redirect('/posts')->with('Modification réussie');
@@ -83,17 +83,7 @@ class PostController extends Controller
         return redirect('/posts');
     }
 
-    public function verified()
-    {
-        return view('posts.verified');
-    }
 
-    public function filtre() {
-
-        return view('posts.filtre');
-    }
-
-    
     public function importUsers(Request $request)
     {
 

@@ -23,30 +23,16 @@
             <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered" style="width: 100%;" aria-describedby="example_info">
             <thead>
               <tr>
-                 <th>
-                    Profil
-                  </th>
-                  <th>
-                     Nom
-                  </th>
-                  <th>
-                     Prenom
-                  </th>
-                  <th>
-                     Poste
-                  </th>
+                  <th>Profil </th>
+                  <th>Nom</th>
+                  <th> Prenom</th>
+                  <th> Poste</th>
                   {{-- <th>
                     Email
                   </th> --}}
-                  <th>
-                    Code
-                  </th>
-                  <th>
-                    Modification
-                  </th>
-                  <th>
-                    Modification
-                  </th>
+                  <th>Code</th>
+                  <th>Modification</th>
+                  <th>Modification</th>
               </tr>
             </thead>
             <tbody>
