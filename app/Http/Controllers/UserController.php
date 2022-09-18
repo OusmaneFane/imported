@@ -31,20 +31,26 @@ class UserController extends Controller
     {
         $users = User::where('no', $id);
         $nbre_absent = User::where('no', $id)->where('absent', 'True')->count();
-        $nbre_retard = User::where('no', $id)->where('late', 1)->count();
+        $nbre_retard = User::where('no', $id)->where('late', '!=','')->count();
         $worktime = User::where('no', $id)->where('worktime', '!=','')->sum('worktime');
+        $nbre_verify = User::where('no', $id)->where('worktime', '!=','')->count();;
+
         if( $request->has('filtre'))
         {
             if($request->query('filtre') == 'absence'){
                $users->where('absent', 'True');
+
             }
             else if($request->query('filtre') == 'retard'){
                 $users->where('late', '!=', '');
             }
+            else if($request->query('filtre') == 'verify'){
+                $users->where('worktime', '=', '');
+            }
         }
          $users = $users->get();
-         return view ('posts.verified', ['users'=>$users, 'nbre_absent'=>$nbre_absent, 
-                                        'nbre_retard'=>$nbre_retard, 'worktime'=>$worktime]);
+         return view ('posts.verified', ['users'=>$users, 'nbre_absent'=>$nbre_absent,
+                                        'nbre_retard'=>$nbre_retard, 'worktime'=>$worktime, 'nbre_verify'=>$nbre_verify]);
 
     }
 

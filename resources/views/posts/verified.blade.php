@@ -8,10 +8,10 @@
     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
         <a href="?filtre=absence" type="button " class="btn btn-success">Absence</a>
         <a href="?filtre=retard" type="button" class="btn btn-warning">Retard</a>
-        <a type="button" class="btn btn-danger">Right</a>
+        <a href="?filtre=verify" type="button" class="btn btn-danger">verify</a>
     </div>
 
-    <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
+    <table id="" class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
         <thead>
           <tr>
             {{-- <th scope="col">ID</th> --}}
@@ -29,11 +29,18 @@
                 <td>{{ $nbre_retard }}</td>
             </tr>
             <tr>
-                <td>worktime</td>
-                <td>{{ $worktime }}</td>
+                <td>Nombre d'heure réalisé /mois</td>
+                @if($worktime > 140)
+                <td>{{ $worktime }} heures</td>
+                @else
+                <td>{{ $worktime }} heures (Non achévé)</td>
+               @endif
+
+
+
             </tr>
          </tbody>
-
+    </table>
 
 <div class="row">
 
