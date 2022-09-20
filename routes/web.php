@@ -19,8 +19,10 @@ use App\Http\Controllers\UserController;
  Route::get('/posts/verified/{id}', [UserController::class, 'verified'])->name('verified');
 // Route::get('/posts/export', [PostController::class, 'exportUsers'])->name('export-data');
 
+//search
+Route::post('/posts/search', [UserController::class, 'search'])->name('search');
 
-
+//users
 Route::get('/users', [UserController::class, 'list'])->name('list');
 Route::post('/import_user', [UserController::class, 'import_user'])->name('import_user');
 

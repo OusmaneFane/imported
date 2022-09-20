@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('no')->default('');
             $table->string('name')->default('');
-            $table->string('date')->default('');
+            $table->date('date');
             $table->string('timetable')->default('');
             $table->string('onduty')->default('');
             $table->string('offduty')->default('');
@@ -30,6 +30,8 @@ class CreateUsersTable extends Migration
             $table->string('absent')->default('');
             $table->string('ottime')->default('');
             $table->string('worktime')->default('');
+            $table->string('startDate')->default('');
+            $table->string('endDate')->default('');
            // $table->timestamp('email_verified_at')->nullable();
            // $table->string('password');
            // $table->rememberToken();

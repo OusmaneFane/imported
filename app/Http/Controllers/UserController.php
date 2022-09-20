@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\PostController;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -29,8 +30,9 @@ class UserController extends Controller
     }
     public function verified($id, Request $request)
     {
+        $users = Carbon::now()->toDateTimeString();
         $users = User::where('no', $id);
-        $nbre_absent = User::where('no', $id)->where('absent', 'True')->count();
+        $nbre_absent = User::where('no', $id)->where('absent', 'True')->count()-4;
         $nbre_retard = User::where('no', $id)->where('late', '!=','')->count();
         $worktime = User::where('no', $id)->where('worktime', '!=','')->sum('worktime');
         $nbre_verify = User::where('no', $id)->where('worktime', '!=','')->count();;
@@ -45,30 +47,36 @@ class UserController extends Controller
                 $users->where('late', '!=', '');
             }
             else if($request->query('filtre') == 'verify'){
-                $users->where('worktime', '=', '');
+                $users->where('worktime', '!=', '');
             }
+            
+        }
+        else if($request->has('startDate') && $request->has('endDate'))
+        {
+            $users->whereBetween('date', [$request->query('startDate'), $request->query('endDate')] );
         }
          $users = $users->get();
          return view ('posts.verified', ['users'=>$users, 'nbre_absent'=>$nbre_absent,
                                         'nbre_retard'=>$nbre_retard, 'worktime'=>$worktime, 'nbre_verify'=>$nbre_verify]);
 
     }
+   
 
-    // public function filtre($id)
+
+    // public function search($id, Request $request)
     // {
-    //     $posts = Post::all();
-    //    //$users = DB::select('select * from users where absent = true');
-
-    //         // foreach ($users as  $user) {
-    // // echo $user->name;
-    //      $users = User::where ('absent', $id)->get();
-    //     return view ('posts.filtre', ['users'=>$users]);
-    // //}
-
-    //     //return view('posts.filtre');
+    //     if($request->has('filtre'))
+    //     {
+    //         $users = User::whereBetween('date', '>=', $request->startDate)
+    //         ->whereBetween('date', '<s=', [$request->startDate])->get();
+            
+    //     }
+       
+  
     // }
 
-
+   
+    
 
 
 }

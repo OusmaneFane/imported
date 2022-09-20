@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Document</title>
+  <title>@yield('title')</title>
   <!-- base:css -->
   <link rel="stylesheet" href="{{ url('vendors/typicons/typicons.css') }}">
   <link rel="stylesheet" href="{{ url('vendors/css/vendor.bundle.base.css') }}">

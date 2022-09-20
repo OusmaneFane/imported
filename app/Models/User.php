@@ -21,6 +21,7 @@ class User extends Authenticatable
         'no',
         'name',
         'date',
+        'timetable',
         'onduty',
         'offduty',
         'clockin',
@@ -32,7 +33,8 @@ class User extends Authenticatable
         'absent',
         'ottime',
         'worktime',
-        
+        'satrtDate',
+        'endDate',
     ];
 
     /**

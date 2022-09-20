@@ -1,15 +1,28 @@
 @extends('layouts.app')
 
+@section('title', ' MLC  | Review Pointeuse ')
+
 @section('content')
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
+<div class="mb-4">
+        <a href="?filtre=absence" type="button " class="btn btn-success">Voir tous les absences </a>
+        <a href="?filtre=retard" type="button" class="btn btn-danger">Voir tous les retards</a>
+        <a href="?filtre=verify" type="button" class="btn btn-secondary">Voir Toutes les heures de travail</a>
 
-    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-        <a href="?filtre=absence" type="button " class="btn btn-success">Absence</a>
-        <a href="?filtre=retard" type="button" class="btn btn-warning">Retard</a>
-        <a href="?filtre=verify" type="button" class="btn btn-danger">verify</a>
-    </div>
+</div>
+
+<form action="#" method="get">
+    @csrf
+    <!-- The start date field -->
+    <input type="date" name="startDate" placeholder="Start date" />
+
+    <!-- The end date field -->
+    <input type="date" name="endDate" placeholder="End date" />
+    <button type="submit" >Search</button>
+
+</form>
 
     <table id="" class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
         <thead>
@@ -54,14 +67,15 @@
                 <th scope="col">Date</th>
                 {{-- <th scope="col">onduty</th>
                 <th scope="col">offduty</th> --}}
-                <th scope="col">clockin</th>
-                <th scope="col">Clockout</th>
+                <th scope="col">Jour</th>
+                <th scope="col">Jour de travail</th>
+                {{-- <th scope="col">Clockout</th> --}}
                 {{-- <th scope="col">normal</th> --}}
                 {{-- <th scope="col">realtime</th> --}}
                 <th scope="col">late</th>
-                <th scope="col">early</th>
+                {{-- <th scope="col">early</th> --}}
                 <th scope="col">absent</th>
-                <th scope="col">ottime</th>
+                {{-- <th scope="col">ottime</th> --}}
                 <th scope="col">worktime</th>
               </tr>
             </thead>
@@ -74,14 +88,15 @@
                         <td>{{ $user->date      }}</td>
                         {{-- <td>{{ $user->onduty    }}</td>
                         <td>{{ $user->offduty   }}</td> --}}
-                        <td>{{ $user->clockin   }}</td>
-                        <td>{{ $user->clockout  }}</td>
+                        <td>{{ date('l', strtotime($user->date))}}</td>
+                        <td>{{ $user->timetable }}</td>
+                        {{-- <td>{{ $user->clockout  }}</td> --}}
                         {{-- <td>{{ $user->normal    }}</td> --}}
                         {{-- <td>{{ $user->realtime  }}</td> --}}
                         <td>{{ $user->late      }}</td>
-                        <td>{{ $user->early     }}</td>
+                        {{-- <td>{{ $user->early     }}</td> --}}
                         <td>{{ $user->absent    }}</td>
-                        <td>{{ $user->ottime    }}</td>
+                        {{-- <td>{{ $user->ottime    }}</td> --}}
                         <td>{{ $user->worktime  }}</td>
                     </tr>
                 @endforeach

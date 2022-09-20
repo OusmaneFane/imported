@@ -1,5 +1,8 @@
 @extends('layouts.app')
+
+@section('title', 'MLC | enregistrement Pointeuse ')
 @section('content')
+
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
@@ -16,7 +19,7 @@
                             </div>
                      @endif
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 mb-6">
                 <form class="row g-3" action="{{ route('import_user') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="col-auto">
@@ -37,7 +40,7 @@
         <div class="row">
 
             <div class="table-responsive table table-striped table-hover">
-                <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
+                <table id="myTable"  class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
                     <thead>
                       <tr>
                         {{-- <th scope="col">ID</th> --}}
@@ -46,14 +49,14 @@
                         <th scope="col">Date</th>
                         {{-- <th scope="col">onduty</th>
                         <th scope="col">offduty</th> --}}
-                        <th scope="col">clockin</th>
-                        <th scope="col">Clockout</th>
+                        {{-- <th scope="col">clockin</th>
+                        <th scope="col">Clockout</th> --}}
                         {{-- <th scope="col">normal</th> --}}
-                        <th scope="col">realtime</th>
+                        {{-- <th scope="col">realtime</th> --}}
                         <th scope="col">late</th>
-                        <th scope="col">early</th>
+                        {{-- <th scope="col">early</th> --}}
                         <th scope="col">absent</th>
-                        <th scope="col">ottime</th>
+                        {{-- <th scope="col">ottime</th> --}}
                         <th scope="col">worktime</th>
                       </tr>
                     </thead>
@@ -67,14 +70,14 @@
                                 <td>{{ $user->date      }}</td>
                                 {{-- <td>{{ $user->onduty    }}</td>
                                 <td>{{ $user->offduty   }}</td> --}}
-                                <td>{{ $user->clockin   }}</td>
-                                <td>{{ $user->clockout  }}</td>
+                                {{-- <td>{{ $user->clockin   }}</td>
+                                <td>{{ $user->clockout  }}</td> --}}
                                 {{-- <td>{{ $user->normal    }}</td> --}}
-                                <td>{{ $user->realtime  }}</td>
+                                {{-- <td>{{ $user->realtime  }}</td> --}}
                                 <td>{{ $user->late      }}</td>
-                                <td>{{ $user->early     }}</td>
+                                {{-- <td>{{ $user->early     }}</td> --}}
                                 <td>{{ $user->absent    }}</td>
-                                <td>{{ $user->ottime    }}</td>
+                                {{-- <td>{{ $user->ottime    }}</td> --}}
                                 <td>{{ $user->worktime  }}</td>
                             </tr>
                         @endforeach
