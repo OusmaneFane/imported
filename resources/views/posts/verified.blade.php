@@ -16,12 +16,16 @@
 <form action="#" method="get">
     @csrf
     <!-- The start date field -->
-    <input type="date" name="startDate" placeholder="Start date" />
-
+    <div class="col-sm-4 ml-auto">
+   <label for="">Start Date</label>
+    <input class="form-control  " type="date" name="startDate" placeholder="Start date" />
+     
     <!-- The end date field -->
-    <input type="date" name="endDate" placeholder="End date" />
-    <button type="submit" >Search</button>
-
+    <label for="">End Date</label>
+    <input class="form-control" type="date" name="endDate" placeholder="End date" />
+    <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
+    rounded hover:shadow mt-2" type="submit" >Search</button>
+</div>
 </form>
 
     <table id="" class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">

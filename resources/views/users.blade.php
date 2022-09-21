@@ -37,6 +37,20 @@
 
 
         </div>
+        <form action="#" method="get">
+            @csrf
+            <!-- The start date field -->
+            <div class="col-sm-4 ml-auto">
+           <label for="">Start Date</label>
+            <input class="form-control  " type="date" name="startDate" placeholder="Start date" />
+             
+            <!-- The end date field -->
+            <label for="">End Date</label>
+            <input class="form-control" type="date" name="endDate" placeholder="End date" />
+            <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
+            rounded hover:shadow mt-2" type="submit" >Search</button>
+        </div>
+        </form>
         <div class="row">
 
             <div class="table-responsive table table-striped table-hover">

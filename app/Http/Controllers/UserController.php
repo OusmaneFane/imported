@@ -35,7 +35,11 @@ class UserController extends Controller
         $nbre_absent = User::where('no', $id)->where('absent', 'True')->count()-4;
         $nbre_retard = User::where('no', $id)->where('late', '!=','')->count();
         $worktime = User::where('no', $id)->where('worktime', '!=','')->sum('worktime');
-        $nbre_verify = User::where('no', $id)->where('worktime', '!=','')->count();;
+        $nbre_verify = User::where('no', $id)->where('worktime', '!=','')->count();
+        
+        $start = Carbon::parse($request->startDate);
+        $end = Carbon::parse($request->endDate);
+       
 
         if( $request->has('filtre'))
         {
@@ -51,14 +55,18 @@ class UserController extends Controller
             }
             
         }
+        
         else if($request->has('startDate') && $request->has('endDate'))
         {
             $users->whereBetween('date', [$request->query('startDate'), $request->query('endDate')] );
+         // $users = User::whereDate('date','<=',$end)
+        // ->whereDate('date','>=',$start)
+        // ->get();
         }
          $users = $users->get();
          return view ('posts.verified', ['users'=>$users, 'nbre_absent'=>$nbre_absent,
                                         'nbre_retard'=>$nbre_retard, 'worktime'=>$worktime, 'nbre_verify'=>$nbre_verify]);
-
+       
     }
    
 

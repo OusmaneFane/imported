@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('no')->default('');
             $table->string('name')->default('');
-            $table->date('date');
+            $table->date('date')->default('');
             $table->string('timetable')->default('');
             $table->string('onduty')->default('');
             $table->string('offduty')->default('');

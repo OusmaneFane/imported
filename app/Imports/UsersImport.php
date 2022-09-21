@@ -19,7 +19,7 @@ class UsersImport implements ToModel, WithHeadingRow
         return new User([
             'no' => $row['no'],
             'name'     => $row['name'],
-            'date'    => date("Y-m-d",strtotime($row['date'])),
+            'date'    =>date('m-d-Y', strtotime(str_replace('-', '/', $row['date']))),
             'timetable' => $row['timetable'],
             'onduty' => $row['onduty'],
             'offduty' => $row['offduty'],
