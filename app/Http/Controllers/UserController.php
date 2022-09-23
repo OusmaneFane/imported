@@ -14,9 +14,41 @@ use Carbon\Carbon;
 class UserController extends Controller
 {
     //
-    public function list()
+    public function list(Request $request)
     {
-        $users = User::get();
+        $users = User::where('no', '!=', null);
+        $nbre_absent = User::where('absent', 'True')->count()-4;
+        $nbre_retard = User::where('late', '!=','')->count();
+        $worktime = User::where('worktime', '!=','')->sum('worktime');
+        $nbre_verify = User::where('worktime', '!=','')->count();
+
+
+        if( $request->has('filtre'))
+        {
+            if($request->query('filtre') == 'absence'){
+               $users->where('absent', 'True');
+
+            }
+            else if($request->query('filtre') == 'retard'){
+                $users->where('late', '!=', '');
+            }
+            else if($request->query('filtre') == 'verify'){
+                $users->where('worktime', '!=', '');
+            }
+
+        }
+
+        if($request->has('startDate') && $request->has('endDate'))
+        {
+            $users->whereBetween('date',  [date($request->query('startDate')), date($request->query('endDate'))]);
+           
+        }
+        if($request->has('name') )
+        {
+            $users->where('name','LIKE','%'.$request->query('name').'%');
+           
+        }
+         $users = $users->get();
         return view ('users', ['users'=>$users]);
     }
     public function import_user(Request $request)
@@ -36,10 +68,7 @@ class UserController extends Controller
         $nbre_retard = User::where('no', $id)->where('late', '!=','')->count();
         $worktime = User::where('no', $id)->where('worktime', '!=','')->sum('worktime');
         $nbre_verify = User::where('no', $id)->where('worktime', '!=','')->count();
-        
-        $start = Carbon::parse($request->startDate);
-        $end = Carbon::parse($request->endDate);
-       
+
 
         if( $request->has('filtre'))
         {
@@ -53,38 +82,30 @@ class UserController extends Controller
             else if($request->query('filtre') == 'verify'){
                 $users->where('worktime', '!=', '');
             }
-            
+
         }
-        
+
         else if($request->has('startDate') && $request->has('endDate'))
         {
-            $users->whereBetween('date', [$request->query('startDate'), $request->query('endDate')] );
-         // $users = User::whereDate('date','<=',$end)
-        // ->whereDate('date','>=',$start)
-        // ->get();
+            $users->whereBetween('date',  [date($request->query('startDate')), date($request->query('endDate'))]);
+           
         }
          $users = $users->get();
          return view ('posts.verified', ['users'=>$users, 'nbre_absent'=>$nbre_absent,
                                         'nbre_retard'=>$nbre_retard, 'worktime'=>$worktime, 'nbre_verify'=>$nbre_verify]);
-       
+
     }
-   
 
 
-    // public function search($id, Request $request)
-    // {
-    //     if($request->has('filtre'))
-    //     {
-    //         $users = User::whereBetween('date', '>=', $request->startDate)
-    //         ->whereBetween('date', '<s=', [$request->startDate])->get();
-            
-    //     }
-       
-  
-    // }
 
-   
-    
+        
 
 
-}
+
+    }
+
+
+
+
+
+

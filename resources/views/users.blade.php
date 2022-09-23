@@ -47,6 +47,8 @@
             <!-- The end date field -->
             <label for="">End Date</label>
             <input class="form-control" type="date" name="endDate" placeholder="End date" />
+            <label for="">Nom</label>
+            <input class="form-control" type="text" name="name" placeholder="Nom" />
             <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
             rounded hover:shadow mt-2" type="submit" >Search</button>
         </div>
@@ -81,7 +83,7 @@
                                 {{-- <th scope="row">{{ $user->id }}</th> --}}
                                 <td>{{ $user->no        }}</td>
                                 <td>{{ $user->name      }}</td>
-                                <td>{{ $user->date      }}</td>
+                                <td>{{ date("d-m-Y",(new DateTime($user->date))->getTimestamp()) }}</td>
                                 {{-- <td>{{ $user->onduty    }}</td>
                                 <td>{{ $user->offduty   }}</td> --}}
                                 {{-- <td>{{ $user->clockin   }}</td>

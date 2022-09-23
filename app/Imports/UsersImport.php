@@ -2,8 +2,10 @@
 
 namespace App\Imports;
 
-use App\Models\User;
 use Hash;
+use DateTime;
+use Carbon\Carbon;
+use App\Models\User;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -19,7 +21,7 @@ class UsersImport implements ToModel, WithHeadingRow
         return new User([
             'no' => $row['no'],
             'name'     => $row['name'],
-            'date'    =>date('m-d-Y', strtotime(str_replace('-', '/', $row['date']))),
+            'date'    => Carbon::createFromFormat('d/m/Y', $row['date']),
             'timetable' => $row['timetable'],
             'onduty' => $row['onduty'],
             'offduty' => $row['offduty'],

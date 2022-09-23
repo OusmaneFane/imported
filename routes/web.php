@@ -23,7 +23,7 @@ use App\Http\Controllers\UserController;
 Route::post('/posts/search', [UserController::class, 'search'])->name('search');
 
 //users
-Route::get('/users', [UserController::class, 'list'])->name('list');
+Route::get('/users/{id}', [UserController::class, 'list'])->name('list');
 Route::post('/import_user', [UserController::class, 'import_user'])->name('import_user');
 
 // import - Export
