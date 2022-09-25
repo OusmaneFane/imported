@@ -20,7 +20,7 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create')->with('Etudiant créer avec succès');
+        return view('posts.create')->with('Employé créer avec succès');
 
     }
 
@@ -105,6 +105,7 @@ class PostController extends Controller
     {
         return view('posts.export');
     }
+
 
     // public function uploadUsers(Request $request)
     // {

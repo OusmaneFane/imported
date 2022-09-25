@@ -21,6 +21,7 @@ use App\Http\Controllers\UserController;
 
 //search
 Route::post('/posts/search', [UserController::class, 'search'])->name('search');
+Route::post('/posts/search', [UserController::class, 'data'])->name('data');
 
 //users
 Route::get('/users/{id}', [UserController::class, 'list'])->name('list');
