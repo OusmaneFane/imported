@@ -5,28 +5,47 @@
 @section('content')
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
 <div class="mb-4">
-        <a href="?filtre=absence" type="button " class="btn btn-success">Voir tous les absences </a>
-        <a href="?filtre=retard" type="button" class="btn btn-danger">Voir tous les retards</a>
-        <a href="?filtre=verify" type="button" class="btn btn-secondary">Voir Toutes les heures de travail</a>
-
+        <a href="?filtre=absence" type="button " class="btn btn-success transition duration-150 ease-in-out ">Voir tous les absences </a>
+        <a href="?filtre=retard" type="button" class="btn btn-danger transition duration-150 ease-in-out">Voir tous les retards</a>
+        <a href="?filtre=verify" type="button" class="btn btn-secondary transition duration-150 ease-in-out">Voir Toutes les heures de travail</a>
 </div>
 
-<form action="#" method="get">
-    @csrf
-    <!-- The start date field -->
-    <div class="col-sm-4 ml-auto">
-   <label for="">Start Date</label>
-    <input class="form-control  " type="date" name="startDate" placeholder="Start date" />
-     
-    <!-- The end date field -->
-    <label for="">End Date</label>
-    <input class="form-control" type="date" name="endDate" placeholder="End date" />
-    <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
-    rounded hover:shadow mt-2" type="submit" >Search</button>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button type="button" class="btn btn-primary  mb-6" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Filtrer</button>
 </div>
-</form>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="#" method="get">
+            @csrf
+            <!-- The start date field -->
+            <div class="col-sm-12 ml-auto">
+           <label for="">Start Date</label>
+            <input class="form-control  " type="date" name="startDate" placeholder="Start date" />
+
+            <!-- The end date field -->
+            <label for="">End Date</label>
+            <input class="form-control" type="date" name="endDate" placeholder="End date" />
+        
+            {{-- <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
+            rounded hover:shadow mt-2" type="submit" >Search</button> --}}
+        </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
 
     <table id="" class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
         <thead>

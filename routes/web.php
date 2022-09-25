@@ -6,6 +6,9 @@ use App\Http\Controllers\UserController;
 
 
  Route::get('/', [PostController::class, 'index']);
+ Route('/login', function() {
+    return view('login');
+ });
 
  Route::get('/posts', [PostController::class, 'index'])->name('board');
  Route::post('/posts', [PostController::class, 'store'])->name('store');
