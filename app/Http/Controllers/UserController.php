@@ -41,13 +41,21 @@ class UserController extends Controller
         if($request->has('startDate') && $request->has('endDate'))
         {
             $users->whereBetween('date',  [date($request->query('startDate')), date($request->query('endDate'))]);
-           
+          
         }
-        if($request->has('name') )
+        if($request->has('absent') )
         {
-            $users->where('name','LIKE','%'.$request->query('name').'%');
-           
+            $users->where('absent', 'True');
+ 
         }
+        if($request->has('late')){
+            $users->where('late', '!=', '');
+        }
+        if($request->has('present') )
+        {
+            $users->where('absent', '!=', 'True');
+        }
+
          $users = $users->get();
         return view ('users', ['users'=>$users]);
     }
@@ -82,13 +90,26 @@ class UserController extends Controller
             else if($request->query('filtre') == 'verify'){
                 $users->where('worktime', '!=', '');
             }
+         
 
         }
 
         else if($request->has('startDate') && $request->has('endDate'))
         {
             $users->whereBetween('date',  [date($request->query('startDate')), date($request->query('endDate'))]);
-           
+
+        }
+        if($request->has('absent') )
+        {
+            $users->where('absent', 'True');
+ 
+        }
+        if($request->has('late')){
+            $users->where('late', '!=', '');
+        }
+        if($request->has('present') )
+        {
+            $users->where('absent', '!=', 'True');
         }
          $users = $users->get();
          return view ('posts.verified', ['users'=>$users, 'nbre_absent'=>$nbre_absent,
@@ -96,10 +117,10 @@ class UserController extends Controller
 
     }
 
-
-
-        
-
+    public function find()
+    {
+        return view('auth.identif');
+    }
 
 
     }
