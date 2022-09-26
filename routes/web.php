@@ -1,14 +1,13 @@
 <?php
 
-use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
 
  Route::get('/', [PostController::class, 'index']);
- Route('/login', function() {
-    return view('login');
- });
+
 
  Route::get('/posts', [PostController::class, 'index'])->name('board');
  Route::post('/posts', [PostController::class, 'store'])->name('store');
@@ -18,6 +17,9 @@ use App\Http\Controllers\UserController;
  Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('destroy');
 // Route::post('/posts/image', [PostController::class, 'photos']);
  Route::get('/posts/importe', [PostController::class, 'importUsers'])->name('import-data');
+ Route::get('/posts/exporte', [LoginController::class, 'exportUsers']);
+ Route::post('/posts/exporte', [LoginController::class, 'traitement']);
+
  Route::get('/posts/{id}/filtre ', [UserController::class, 'filtre'])->name('filtre');
  Route::get('/posts/verified/{id}', [UserController::class, 'verified'])->name('verified');
 // Route::get('/posts/export', [PostController::class, 'exportUsers'])->name('export-data');
@@ -27,10 +29,15 @@ Route::post('/posts/search', [UserController::class, 'search'])->name('search');
 Route::post('/posts/search', [UserController::class, 'data'])->name('data');
 
 //users
-Route::get('/users/{id}', [UserController::class, 'list'])->name('list');
+Route::get('/users', [UserController::class, 'list'])->name('list');
 Route::post('/import_user', [UserController::class, 'import_user'])->name('import_user');
 
+Route::get('/auth/identif', [UserController::class, 'find']);
 // import - Export
 // Route::get('/posts/file-import',[PostController::class,'importView'])->name('import-view');
 // Route::post('/posts/import',[PostController::class,'import'])->name('import');
 // Route::get('/posts/export-users',[PostController::class,'exportUsers'])->name('export-users');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -86,25 +86,12 @@ class PostController extends Controller
 
     public function importUsers(Request $request)
     {
-
-    //    $this ->validate($request, [
-    //         'excel_file'=>'required|mimes:xlsx',
-    //     ]);
-
-       // Excel::import(new ImportUser, $request->file('excel_file'));
-
-    //     $excel_file = $request->excel_file->move(public_path(), $request->excel_file->hashName());
-    //   //  return redirect()->back()->with('Succes imported');
-
           return view('posts.importe');
 
-              }
+     }
 
 
-    public function exportUsers()
-    {
-        return view('posts.export');
-    }
+    
 
 
     // public function uploadUsers(Request $request)
