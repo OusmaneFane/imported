@@ -8,9 +8,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
 <div class="mb-4">
-        <a href="?filtre=absence" type="button " class="btn btn-success transition duration-150 ease-in-out ">Voir tous les absences </a>
-        <a href="?filtre=retard" type="button" class="btn btn-danger transition duration-150 ease-in-out">Voir tous les retards</a>
-        <a href="?filtre=verify" type="button" class="btn btn-secondary transition duration-150 ease-in-out">Voir Toutes les heures de travail</a>
+        <a href="?filtre=absence" type="button " class="btn bg-pink-600 transition duration-150 ease-in-out ">Voir tous les absences </a>
+        <a href="?filtre=retard" type="button" class="btn bg-gray-500 transition duration-150 ease-in-out">Voir tous les retards</a>
+        <a href="?filtre=verify" type="button" class="btn bg-pink-600 transition duration-150 ease-in-out">Voir Toutes les heures de travail</a>
 </div>
 
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -33,6 +33,24 @@
             <!-- The end date field -->
             <label for="">End Date</label>
             <input class="form-control" type="date" name="endDate" placeholder="End date" />
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="absent" name="absent"id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Absence
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="late" name="late" id="flexCheckChecked" >
+                <label class="form-check-label" for="flexCheckChecked">
+                 Retard
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="late" name="present" id="flexCheckChecked" >
+                <label class="form-check-label" for="flexCheckChecked">
+                 Présent
+                </label>
+              </div>
         
             {{-- <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
             rounded hover:shadow mt-2" type="submit" >Search</button> --}}
@@ -108,7 +126,7 @@
                         {{-- <th scope="row">{{ $user->id }}</th> --}}
                         <td>{{ $user->no        }}</td>
                         <td>{{ $user->name      }}</td>
-                        <td>{{ $user->date      }}</td>
+                        <td>{{ date("d-m-Y",(new DateTime($user->date))->getTimestamp()) }}</td>
                         {{-- <td>{{ $user->onduty    }}</td>
                         <td>{{ $user->offduty   }}</td> --}}
                         <td>{{ date('l', strtotime($user->date))}}</td>

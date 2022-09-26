@@ -6,7 +6,7 @@
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
 <div class="col-lg-12 grid-margin stretch-card ">
     <div class="card d-block p-2">
@@ -29,7 +29,10 @@
                                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                           Insérer un fichier
                                         </button>
+                                        <a href="{{ route('board') }}" class="bg-pink-400 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
+                                        rounded hover:shadow">Liste des employés</a>
                                       </p>
+                                     
                                       <div class="collapse" id="collapseExample">
                                         <div class="card card-body">
                                             <div class="modal-body">
@@ -77,8 +80,27 @@
                 <!-- The end date field -->
                 <label for="">End Date</label>
                 <input class="form-control" type="date" name="endDate" placeholder="End date" />
-                <label for="">Nom</label>
-                <input class="form-control" type="text" name="name" placeholder="Nom" />
+                {{-- <label for="">Nom</label>
+                <input class="form-control" type="text" name="name" placeholder="Nom" /> --}}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="absent" name="absent"id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Absence
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="late" name="late" id="flexCheckChecked" >
+                    <label class="form-check-label" for="flexCheckChecked">
+                     Retard
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="late" name="present" id="flexCheckChecked" >
+                    <label class="form-check-label" for="flexCheckChecked">
+                     Présent
+                    </label>
+                  </div>
+                 
                 {{-- <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
                 rounded hover:shadow mt-2" type="submit" >Search</button> --}}
             </div>
@@ -98,7 +120,7 @@
         <div class="row">
 
             <div class="table-responsive table table-striped table-hover">
-                <table id="myTable"  class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
+                <table id="table_id"  class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
                     <thead>
                       <tr>
                         {{-- <th scope="col">ID</th> --}}
