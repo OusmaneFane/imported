@@ -53,19 +53,29 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-       
+
         $userInfo = Utilisateur::where('name','=', $request->name)->first();
         if($userInfo){
             if(Hash::check($request->password, $userInfo->password)){
-                $request->session()->put('Passe', $userInfo->id);
-                return back();
+                $request->session()->put('PasseUser', $userInfo->id);
+                return redirect('/users');
             }else{
                 return back()->with('fail', 'Mot de passe Incorrect');
             }
         }else{
                 return back()->with('fail', 'Aucun compte ne correspond à cet email');
         }
-       
+
+    }
+
+    public function logout()
+    {
+        if(session()->has('PasseUser')){
+            session()->pull('PasseUser');
+            return redirect('posts/exporte');
+        }else{
+            return('Pas de session');
+        }
     }
 }
  //     return back()->with('fail', 'Vous n\'êtes pas reconnu' );

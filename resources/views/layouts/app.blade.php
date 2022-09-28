@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-       <h1 class="btn btn-dark position-relative">MALI-CREANCES</h1>
+       <h1 class="btn btn-dark position-relative"><a href="/logout">MALI-CREANCES</a></h1>
       </div>
     </nav>
     <!-- partial -->
@@ -214,7 +214,7 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('list') }}">
+            <a class="nav-link" href="/users">
               <i class="typcn typcn-device-desktop menu-icon"></i>
               <span class="menu-title">Pointeuse</span>
               <div class="badge badge-danger">new</div>

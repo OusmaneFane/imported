@@ -19,11 +19,12 @@ use App\Http\Controllers\LoginController;
 // Route::post('/posts/image', [PostController::class, 'photos']);
  Route::get('/posts/importe', [PostController::class, 'importUsers'])->name('import-data');
  //Connexion
- Route::get('/posts/exporte', [LoginController::class, 'exportUsers']);
+ Route::get('/posts/exporte', [LoginController::class, 'exportUsers'])->middleware('AllreadyLoggedIn');
  Route::post('/posts/check', [LoginController::class, 'check']);
  //Inscription
- Route::get('/posts/inscrit', [LoginController::class, 'inscription']);
+ Route::get('/posts/inscrit', [LoginController::class, 'inscription'])->middleware('AllreadyLoggedIn');
  Route::post('/posts/trait', [LoginController::class, 'trait']);
+ Route::get('/logout', [LoginController::class, 'logout']);
 
 
  Route::get('/posts/{id}/filtre ', [UserController::class, 'filtre'])->name('filtre');
@@ -35,9 +36,9 @@ Route::post('/posts/search', [UserController::class, 'search'])->name('search');
 Route::post('/posts/search', [UserController::class, 'data'])->name('data');
 
 //users
-Route::get('/users', [UserController::class, 'list'])->name('list');
+Route::get('/users', [UserController::class, 'list'])->middleware('list');
 Route::post('/import_user', [UserController::class, 'import_user'])->name('import_user');
-Route::post('/users', [UserController::class, 'list'])->name('list');
+Route::post('/users', [UserController::class, 'list']);
 
 // import - Export
 // Route::get('/posts/file-import',[PostController::class,'importView'])->name('import-view');

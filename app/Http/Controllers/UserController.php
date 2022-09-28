@@ -1,21 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Utilisateur;
 use PhpParser\Builder\Use_;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\PostController;
-use Carbon\Carbon;
 
 class UserController extends Controller
 {
     //
     public function list(Request $request)
     {
+        if(session()->has('PasseUser')){
+        
+        $utilisateur = Utilisateur::where('id', '=', session('PasseUser'))->first();
+       
         $users = User::where('no', '!=', null);
         $nbre_absent = User::where('absent', 'True')->count()-4;
         $nbre_retard = User::where('late', '!=','')->count();
@@ -57,6 +62,7 @@ class UserController extends Controller
         }
 
          $users = $users->get();
+        }
         return view ('users', ['users'=>$users]);
     }
     public function import_user(Request $request)
