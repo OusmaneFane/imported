@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -17,8 +18,13 @@ use App\Http\Controllers\LoginController;
  Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('destroy');
 // Route::post('/posts/image', [PostController::class, 'photos']);
  Route::get('/posts/importe', [PostController::class, 'importUsers'])->name('import-data');
+ //Connexion
  Route::get('/posts/exporte', [LoginController::class, 'exportUsers']);
- Route::post('/posts/exporte', [LoginController::class, 'traitement']);
+ Route::post('/posts/check', [LoginController::class, 'check']);
+ //Inscription
+ Route::get('/posts/inscrit', [LoginController::class, 'inscription']);
+ Route::post('/posts/trait', [LoginController::class, 'trait']);
+
 
  Route::get('/posts/{id}/filtre ', [UserController::class, 'filtre'])->name('filtre');
  Route::get('/posts/verified/{id}', [UserController::class, 'verified'])->name('verified');
@@ -31,8 +37,8 @@ Route::post('/posts/search', [UserController::class, 'data'])->name('data');
 //users
 Route::get('/users', [UserController::class, 'list'])->name('list');
 Route::post('/import_user', [UserController::class, 'import_user'])->name('import_user');
+Route::post('/users', [UserController::class, 'list'])->name('list');
 
-Route::get('/auth/identif', [UserController::class, 'find']);
 // import - Export
 // Route::get('/posts/file-import',[PostController::class,'importView'])->name('import-view');
 // Route::post('/posts/import',[PostController::class,'import'])->name('import');

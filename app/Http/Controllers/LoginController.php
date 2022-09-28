@@ -1,8 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use App\Models\Post;
+
 
 class LoginController extends Controller
 {
@@ -10,18 +17,64 @@ class LoginController extends Controller
     {
         return view('posts.exporte');
     }
-    public function traitement()
+
+    public function inscription()
+    {
+        return view('posts.inscrit');
+    }
+    public function trait(Request $request)
+     {
+        request()->validate([
+            'name' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+            'password_confirm' => ['required'],
+
+        ]);
+
+        $utilisateur = new Utilisateur;
+        $utilisateur->name = $request->name;
+        $utilisateur->email = $request->email;
+        $utilisateur->password = Hash::make($request->password);
+        $utilisateur->password_confirm = Hash::make($request->password_confirm);
+        $query = $utilisateur->save();
+
+        if($query){
+            return back()->with('success', 'Inscription réussi avec succès');
+        }else {
+            return back()->with('fail', 'Quelque chose s\'est aml passée');
+        }
+
+     }
+    public function check(Request $request)
     {
         request()->validate([
-            'email' => ['required', 'email'],
+            'name' => ['required'],
             'password' => ['required'],
         ]);
 
-        $results = auth()->attempt([
-            'email' => request('email'),
-            'password' =>request('password'),
-        ]);
-        var_dump($results);
-        return ('traitement de données');
+       
+        $userInfo = Utilisateur::where('name','=', $request->name)->first();
+        if($userInfo){
+            if(Hash::check($request->password, $userInfo->password)){
+                $request->session()->put('Passe', $userInfo->id);
+                return back();
+            }else{
+                return back()->with('fail', 'Mot de passe Incorrect');
+            }
+        }else{
+                return back()->with('fail', 'Aucun compte ne correspond à cet email');
+        }
+       
     }
 }
+ //     return back()->with('fail', 'Vous n\'êtes pas reconnu' );
+        // }else{
+        //     if(!$userInfop){
+        //         return back()->with('fail', 'mtd incorrect');
+
+        //     }else{
+        //         $request->session()->put('passe', $userInfo->id);
+        //         return view('/home');
+        //     }
+        // }

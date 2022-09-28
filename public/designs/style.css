@@ -1,12 +1,12 @@
 @import "fonts.css";
 
 body{
-    background: #c38209;
+    background: #cf8b0b;
 }
 #container{
     width:500px;
     margin:0 auto;
-    margin-top:5%;
+    margin-top:0.5%;
 }
 
 /* B
@@ -14,8 +14,8 @@ ordered form */
 form {
     width:auto;
     padding: 30px;
-    border: 1px solid black;
-    background: silver;
+    border: 1px ;
+    background: white;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 #container h1{
@@ -36,7 +36,7 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 input[type=submit] {
-    background-color: #c38209;
+    background-color: gray;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;

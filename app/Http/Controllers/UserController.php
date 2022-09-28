@@ -66,7 +66,7 @@ class UserController extends Controller
         ]);
 
         Excel::import(new UsersImport, $request->file('excel_file'));
-        return redirect()->back()->with('success', 'Données Inséreer avec succès');
+        return redirect()->back()->with('success', 'Données Insérer avec succès');
     }
     public function verified($id, Request $request)
     {

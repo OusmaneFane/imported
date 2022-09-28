@@ -5,6 +5,7 @@
 @section('content')
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
 
 <div class="col-lg-12 grid-margin stretch-card">
@@ -12,7 +13,7 @@
       <div class="card-body">
         <h1 class="card-title font-weight-bold">MALI-CREANCES </h1>
         <p>
-            <a href="{{ route('create') }}" class="bg-yellow-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
+            <a href="{{ route('create') }}" class="bg-pink-600 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
             rounded hover:shadow">Ajouter un nouvel employé</a>
 
             <a href="{{ route('list') }}" class="bg-yellow-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
@@ -21,6 +22,7 @@
             {{-- <a href="{{ route('export-data') }}" class="bg-gray-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
             rounded hover:shadow">Exporter</a> --}}
         </p>
+        
         <div class="table-responsive table table-striped table-hover">
             <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered" style="width: 100%;" aria-describedby="example_info">
             <thead>
