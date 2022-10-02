@@ -25,7 +25,7 @@
 
           <tr class="foobar">
              <td class="py-1">
-                <a href="/posts/verified/{{  $post->code  }}"><img href src="images/face{{ $post->id }}.jpg" alt="image{{ $post->id }}"></a>
+                <a href="/posts/verified/{{  $post->code  }}"><img href src="/images/face{{ $post->id }}.jpg" alt="image{{ $post->id }}"></a>
             </td>
 
             <td>{{  $post->nom  }}</td>

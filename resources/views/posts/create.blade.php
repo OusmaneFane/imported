@@ -33,6 +33,11 @@
                     <option value="IT_Departement">IT_Departement</option>
                     <option value="Ressources humaines">Ressources humaines</option>
                     <option value="Recouvrement">Recouvrement</option>
+                    <option value="IOB">IOB</option>
+                    <option value="Direction">Direction</option>
+                    <option value="Controle">Controle</option>
+                    <option value="Comptabilité">Comptabilité</option>
+
                     <option value="Stagiare">Stagiaire</option>
                   </select>
             </div>

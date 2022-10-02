@@ -20,7 +20,6 @@ class UserController extends Controller
         if(session()->has('PasseUser')){
 
         $utilisateur = Utilisateur::where('id', '=', session('PasseUser'))->first();
-
         $users = User::where('no', '!=', null);
         $nbre_absent = User::where('absent', 'True')->count()-4;
         $nbre_retard = User::where('late', '!=','')->count();
@@ -61,6 +60,7 @@ class UserController extends Controller
         }
 
          $users = $users->get();
+        
         }
 
         return view ('users', ['users'=>$users]);

@@ -118,9 +118,10 @@
             <div class="table-responsive table table-striped table-hover">
                 <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered" style="width: 100%;" aria-describedby="example_info">
                     <thead>
+                        
                       <tr>
                         {{-- <th scope="col">ID</th> --}}
-                        <th scope="col">no</th>
+                        
                         <th scope="col">Nom</th>
                         <th scope="col">Date</th>
                         <th scope="col">Jour</th>
@@ -140,9 +141,10 @@
                     <tbody>
                     @if(count($users))
                         @foreach ($users as $user)
+                        
                             <tr>
                                 {{-- <th scope="row">{{ $user->id }}</th> --}}
-                                <td>{{ $user->no        }}</td>
+                                    
                                 <td>{{ $user->name      }}</td>
                                 <td>{{ date("d-m-Y",(new DateTime($user->date))->getTimestamp()) }}</td>
                                 <td>{{ date('l', strtotime($user->date))}}</td>
@@ -159,6 +161,7 @@
                                 {{-- <td>{{ $user->ottime    }}</td> --}}
                                 <td>{{ $user->worktime  }}</td>
                             </tr>
+                           
                         @endforeach
                         @else
                             <tr>
