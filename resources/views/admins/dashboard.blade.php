@@ -1,11 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
-@section('title', 'MLC | enregistrement Pointeuse ')
+@section('title', 'MLC |  Pointeuse ')
 @section('content')
 
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
 <div class="col-lg-12 grid-margin stretch-card ">
@@ -25,7 +27,11 @@
         </div>
                                      {{-- Insertion --}}
                                      <p>
-                                        <a href="/posts/search" class="bg-pink-400 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
+
+                                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                          Insérer un fichier
+                                        </button>
+                                        <a href="{{ route('board') }}" class="bg-pink-400 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
                                         rounded hover:shadow">Liste des employés</a>
                                       </p>
 
@@ -116,14 +122,13 @@
         <div class="row">
 
             <div class="table-responsive table table-striped table-hover">
-                <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered" style="width: 100%;" aria-describedby="example_info">
+                <table id="table_id"  class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
                     <thead>
                       <tr>
                         {{-- <th scope="col">ID</th> --}}
                         <th scope="col">no</th>
                         <th scope="col">Nom</th>
                         <th scope="col">Date</th>
-                        <th scope="col">Jour</th>
                         {{-- <th scope="col">onduty</th>
                         <th scope="col">offduty</th> --}}
                         {{-- <th scope="col">clockin</th>
@@ -145,8 +150,6 @@
                                 <td>{{ $user->no        }}</td>
                                 <td>{{ $user->name      }}</td>
                                 <td>{{ date("d-m-Y",(new DateTime($user->date))->getTimestamp()) }}</td>
-                                <td>{{ date('l', strtotime($user->date))}}</td>
-
                                 {{-- <td>{{ $user->onduty    }}</td>
                                 <td>{{ $user->offduty   }}</td> --}}
                                 {{-- <td>{{ $user->clockin   }}</td>
@@ -163,7 +166,7 @@
                         @else
                             <tr>
                                 <td colspan="3">Aucune donnée trouvée</td>
-                               
+                            
                             </tr>
                     @endif
                     </tbody>
@@ -173,4 +176,20 @@
     </div>
     </div>
 </div>
+<!-- base:js -->
+<script src="vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page-->
+<script src="vendors/chart.js/Chart.min.js"></script>
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="js/off-canvas.js"></script>
+<script src="js/hoverable-collapse.js"></script>
+<script src="js/template.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="js/dashboard.js"></script>
+<!-- End custom js for this page-->
 @endsection

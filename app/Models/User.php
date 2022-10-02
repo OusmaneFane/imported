@@ -33,8 +33,6 @@ class User extends Authenticatable
         'absent',
         'ottime',
         'worktime',
-        'satrtDate',
-        'endDate',
     ];
 
     /**

@@ -11,8 +11,8 @@ class Utilisateur extends Model implements Authenticatable
 
     use HasFactory;
     use \Illuminate\Auth\Authenticatable;
-    protected $fillable = ['email', 'mot_de_passe', 'name', 'password_confirm'];
-    
+    protected $fillable = ['email', 'password', 'name', 'password_confirm'];
+
     /**
      * Get the password for the user.
      *

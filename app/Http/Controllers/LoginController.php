@@ -1,21 +1,31 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
+use App\Models\Post;
+use App\Models\User;
 
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use App\Models\Post;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 
 class LoginController extends Controller
 {
-    public function exportUsers()
+    public function administrator()
     {
-        return view('posts.exporte');
+        $users = DB::table('users')->get();
+        return view('admins/dashboard', ['users'=>$users]);
+    }
+
+    public function exportUsers(Request $request)
+    {
+        if($request->session()->has('PasseUser')){
+            return  redirect()->back();
+        }
+        return view('posts.login');
     }
 
     public function inscription()
@@ -32,17 +42,18 @@ class LoginController extends Controller
 
         ]);
 
-        $utilisateur = new Utilisateur;
-        $utilisateur->name = $request->name;
-        $utilisateur->email = $request->email;
-        $utilisateur->password = Hash::make($request->password);
-        $utilisateur->password_confirm = Hash::make($request->password_confirm);
-        $query = $utilisateur->save();
+         $query = DB::table('utilisateurs')
+                ->insert([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'password_confirm' => Hash::make($request->password_confirm)
+                ]);
 
         if($query){
             return back()->with('success', 'Inscription réussi avec succès');
         }else {
-            return back()->with('fail', 'Quelque chose s\'est aml passée');
+            return back()->with('fail', 'Quelque chose s\'est mal passée');
         }
 
      }
@@ -53,38 +64,38 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
+        $userInfo = DB::table('utilisateurs')
+                  ->where('name', $request->name )
+                  ->first();
+                    
 
-        $userInfo = Utilisateur::where('name','=', $request->name)->first();
         if($userInfo){
-            if(Hash::check($request->password, $userInfo->password)){
+            if(Hash::check($request->password, $userInfo->password) ){
                 $request->session()->put('PasseUser', $userInfo->id);
-                return redirect('/users');
+                if($userInfo->user_type== 'Administrator'){
+                    return redirect('/admins/dashboard');
+                }
+                else{
+                    return redirect('/users');
+                }
+                
             }else{
                 return back()->with('fail', 'Mot de passe Incorrect');
             }
         }else{
                 return back()->with('fail', 'Aucun compte ne correspond à cet email');
         }
-
+       
     }
 
     public function logout()
     {
         if(session()->has('PasseUser')){
             session()->pull('PasseUser');
-            return redirect('posts/exporte');
+            return redirect('posts/login');
         }else{
             return('Pas de session');
         }
     }
 }
- //     return back()->with('fail', 'Vous n\'êtes pas reconnu' );
-        // }else{
-        //     if(!$userInfop){
-        //         return back()->with('fail', 'mtd incorrect');
-
-        //     }else{
-        //         $request->session()->put('passe', $userInfo->id);
-        //         return view('/home');
-        //     }
-        // }
+ 

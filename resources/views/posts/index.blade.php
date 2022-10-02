@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('title', 'MLC | Liste des employés')
 @section('content')
@@ -16,13 +16,13 @@
             <a href="{{ route('create') }}" class="bg-pink-600 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
             rounded hover:shadow">Ajouter un nouvel employé</a>
 
-            <a href="{{ route('list') }}" class="bg-yellow-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
+            <a href="/users" class="bg-yellow-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
             rounded hover:shadow">Importer</a>
 
             {{-- <a href="{{ route('export-data') }}" class="bg-gray-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
             rounded hover:shadow">Exporter</a> --}}
         </p>
-        
+
         <div class="table-responsive table table-striped table-hover">
             <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered" style="width: 100%;" aria-describedby="example_info">
             <thead>

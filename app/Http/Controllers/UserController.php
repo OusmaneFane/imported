@@ -18,15 +18,14 @@ class UserController extends Controller
     public function list(Request $request)
     {
         if(session()->has('PasseUser')){
-        
+
         $utilisateur = Utilisateur::where('id', '=', session('PasseUser'))->first();
-       
+
         $users = User::where('no', '!=', null);
         $nbre_absent = User::where('absent', 'True')->count()-4;
         $nbre_retard = User::where('late', '!=','')->count();
         $worktime = User::where('worktime', '!=','')->sum('worktime');
         $nbre_verify = User::where('worktime', '!=','')->count();
-
 
         if( $request->has('filtre'))
         {
@@ -46,12 +45,12 @@ class UserController extends Controller
         if($request->has('startDate') && $request->has('endDate'))
         {
             $users->whereBetween('date',  [date($request->query('startDate')), date($request->query('endDate'))]);
-          
+
         }
         if($request->has('absent') )
         {
             $users->where('absent', 'True');
- 
+
         }
         if($request->has('late')){
             $users->where('late', '!=', '');
@@ -63,6 +62,7 @@ class UserController extends Controller
 
          $users = $users->get();
         }
+
         return view ('users', ['users'=>$users]);
     }
     public function import_user(Request $request)
@@ -71,7 +71,9 @@ class UserController extends Controller
             'excel_file' => 'required|mimes:xlsx',
         ]);
 
-        Excel::import(new UsersImport, $request->file('excel_file'));
+        // Excel::import(new UsersImport, $request->file('excel_file'));
+           Excel::import(new UsersImport, $request->file('excel_file'));
+
         return redirect()->back()->with('success', 'Données Insérer avec succès');
     }
     public function verified($id, Request $request)
@@ -96,7 +98,7 @@ class UserController extends Controller
             else if($request->query('filtre') == 'verify'){
                 $users->where('worktime', '!=', '');
             }
-         
+
 
         }
 
@@ -108,7 +110,7 @@ class UserController extends Controller
         if($request->has('absent') )
         {
             $users->where('absent', 'True');
- 
+
         }
         if($request->has('late')){
             $users->where('late', '!=', '');
@@ -126,6 +128,15 @@ class UserController extends Controller
     public function find()
     {
         return view('auth.identif');
+    }
+    public function search()
+    {
+        $posts = Post::all();
+        $users = DB::table('utilisateurs')->get();
+
+
+       // return view('posts.index', ['posts' => $posts, 'utilisateurs'=>$users]);
+        return view('posts.search', ['posts' => $posts]);
     }
 
 

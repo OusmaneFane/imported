@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\Post;
-use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\ImportUser;
 use App\Exports\ExportUser;
+use App\Imports\ImportUser;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PostController extends Controller
 {
@@ -13,14 +14,17 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+        $users = DB::table('utilisateurs')->get();
 
-        return view('posts.index', ['posts' => $posts]);
+
+        return view('posts.index', ['posts' => $posts, 'utilisateurs'=>$users]);
     }
 
 
     public function create()
     {
-        return view('posts.create')->with('Employé créer avec succès');
+
+        return view('posts.create')->with('success', 'Employé créer avec succès');
 
     }
 
@@ -91,7 +95,7 @@ class PostController extends Controller
      }
 
 
-    
+
 
 
     // public function uploadUsers(Request $request)

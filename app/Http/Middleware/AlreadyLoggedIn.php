@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AllreadyLoggedIn
+class AlreadyLoggedIn
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,11 @@ class AllreadyLoggedIn
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session()->has('PasseUser' && (url('posts/exporte') == $request->url() || url('posts/inscrit') == $request->url()))){
+        if($request->session()->has('PasseUser' && (url('posts/login') == $request->url() ||
+         url('posts/inscrit') == $request->url() ) ) ){
             return back();
-        }
+         }
+
         return $next($request);
     }
 }

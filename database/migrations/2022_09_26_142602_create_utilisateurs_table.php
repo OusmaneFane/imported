@@ -19,6 +19,7 @@ class CreateUtilisateursTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('password_confirm');
+            $table->string('user_type')->nullable();
             $table->timestamps();
         });
     }

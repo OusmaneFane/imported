@@ -14,8 +14,9 @@
   <link rel="stylesheet" href="{{ url('css/vertical-layout-light/style.css ')}}">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
-  
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+  <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
@@ -42,6 +43,7 @@
 
 
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <h1 class=" fs-1 opacity-100 shadow-none p-3 mb-5 bg-light rounded position-absolute top-30 start-50">Mali-Creances</h1>
        <h1 class="btn btn-dark position-relative"><a href="/logout">Logout</a></h1>
       </div>
 
@@ -221,7 +223,7 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="/users">
+            <a class="nav-link" >
               <i class="typcn typcn-device-desktop menu-icon"></i>
               <span class="menu-title">Pointeuse</span>
               <div class="badge badge-danger">new</div>
@@ -229,47 +231,33 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" href="{{ route('create') }}" aria-expanded="false" aria-controls="ui-basic">
               <i class="typcn typcn-document-text menu-icon"></i>
-              <span class="menu-title">Bienvenue </span>
+              <span class="menu-title">Add a new employee</span>
               <i class="menu-arrow"></i>
             </a>
-            {{-- <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('create') }}"> ajouter un nouvel employé</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('board') }}">Liste des employés</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('import-data') }}">Insérer un fichier</a></li>
-              </ul>
-            </div> --}}
+
           </li>
-          {{-- <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('board') }}" aria-expanded="false" aria-controls="form-elements">
               <i class="typcn typcn-film menu-icon"></i>
-              <span class="menu-title">Form elements</span>
+              <span class="menu-title">Liste des employés</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="form-elements">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
-              </ul>
-            </div>
-          </li> --}}
-          {{-- <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="{{ route('import-data') }}" aria-expanded="false" aria-controls="charts">
               <i class="typcn typcn-chart-pie-outline menu-icon"></i>
-              <span class="menu-title">Charts</span>
+              <span class="menu-title">Importer un fichier</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="charts">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
-              </ul>
-            </div>
-          </li> --}}
-          {{-- <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="/users" aria-expanded="false" aria-controls="tables">
               <i class="typcn typcn-th-small-outline menu-icon"></i>
-              <span class="menu-title">Tables</span>
+              <span class="menu-title">page users</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="tables">
@@ -277,33 +265,16 @@
                 <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
               </ul>
             </div>
-          </li> --}}
-          {{-- <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-              <i class="typcn typcn-compass menu-icon"></i>
-              <span class="menu-title">Icons</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="icons">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
-              </ul>
-            </div>
-          </li> --}}
-          {{-- <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link"  href="/logout" aria-expanded="false" aria-controls="auth">
               <i class="typcn typcn-user-add-outline menu-icon"></i>
-              <span class="menu-title">Connexion</span>
+              <span class="menu-title">Deconnection</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('create') }}"> ajouter un nouvel employé</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-              </ul>
-            </div>
-          </li> --}}
+
+          </li>
 
 
         </ul>

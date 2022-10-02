@@ -10,21 +10,21 @@ use App\Http\Controllers\LoginController;
  Route::get('/', [PostController::class, 'index']);
 
 
- Route::get('/posts', [PostController::class, 'index'])->name('board');
  Route::post('/posts', [PostController::class, 'store'])->name('store');
- Route::get('/posts/create', [PostController::class, 'create'])->name('create');
  Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('edit');
  Route::put('/posts/{post}', [PostController::class, 'update'])->name('update');
  Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('destroy');
 // Route::post('/posts/image', [PostController::class, 'photos']);
  Route::get('/posts/importe', [PostController::class, 'importUsers'])->name('import-data');
  //Connexion
- Route::get('/posts/exporte', [LoginController::class, 'exportUsers'])->middleware('AllreadyLoggedIn');
+ Route::get('/posts/login', [LoginController::class, 'exportUsers'])->middleware('AlreadyLoggedIn');
  Route::post('/posts/check', [LoginController::class, 'check']);
  //Inscription
- Route::get('/posts/inscrit', [LoginController::class, 'inscription'])->middleware('AllreadyLoggedIn');
+ Route::get('/posts/inscrit', [LoginController::class, 'inscription'])->middleware('AlreadyLoggedIn');
  Route::post('/posts/trait', [LoginController::class, 'trait']);
  Route::get('/logout', [LoginController::class, 'logout']);
+
+
 
 
  Route::get('/posts/{id}/filtre ', [UserController::class, 'filtre'])->name('filtre');
@@ -32,13 +32,24 @@ use App\Http\Controllers\LoginController;
 // Route::get('/posts/export', [PostController::class, 'exportUsers'])->name('export-data');
 
 //search
-Route::post('/posts/search', [UserController::class, 'search'])->name('search');
+Route::get('/posts/search', [UserController::class, 'search'])->name('search');
 Route::post('/posts/search', [UserController::class, 'data'])->name('data');
 
 //users
 Route::get('/users', [UserController::class, 'list'])->middleware('list');
 Route::post('/import_user', [UserController::class, 'import_user'])->name('import_user');
 Route::post('/users', [UserController::class, 'list']);
+//admin
+Route::middleware(['isAdmin'])->group(function () {
+    Route::get('/posts/create', [PostController::class, 'create'])->name('create');
+    Route::get('/admins/dashboard', [LoginController::class, 'administrator']);
+    Route::post('/admins/dashboard', [LoginController::class, 'administrator']);
+    Route::get('/', [PostController::class, 'index']);
+    Route::get('/posts', [PostController::class, 'index'])->name('board');
+
+
+
+  });
 
 // import - Export
 // Route::get('/posts/file-import',[PostController::class,'importView'])->name('import-view');
