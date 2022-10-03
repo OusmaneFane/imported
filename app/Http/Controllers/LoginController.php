@@ -67,7 +67,7 @@ class LoginController extends Controller
         $userInfo = DB::table('utilisateurs')
                   ->where('name', $request->name )
                   ->first();
-                    
+
 
         if($userInfo){
             if(Hash::check($request->password, $userInfo->password) ){
@@ -78,14 +78,14 @@ class LoginController extends Controller
                 else{
                     return redirect('/users');
                 }
-                
+
             }else{
                 return back()->with('fail', 'Mot de passe Incorrect');
             }
         }else{
                 return back()->with('fail', 'Aucun compte ne correspond à cet email');
         }
-       
+
     }
 
     public function logout()
@@ -94,8 +94,8 @@ class LoginController extends Controller
             session()->pull('PasseUser');
             return redirect('posts/login');
         }else{
-            return('Pas de session');
+            return redirect('posts/login');
         }
     }
 }
- 
+

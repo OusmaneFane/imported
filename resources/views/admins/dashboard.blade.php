@@ -33,6 +33,8 @@
                                         </button>
                                         <a href="{{ route('board') }}" class="bg-pink-400 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
                                         rounded hover:shadow">Liste des employés</a>
+                                        <a href="{{ route('conge') }}" class="bg-pink-400 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
+                                        rounded hover:shadow">Prendre un coongé</a>
                                       </p>
 
                                       <div class="collapse" id="collapseExample">

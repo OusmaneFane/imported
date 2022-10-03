@@ -9,13 +9,12 @@
           <th>Profil </th>
           <th>Nom</th>
           <th> Prenom</th>
-          <th> Poste</th>
+          <th> Département</th>
           {{-- <th>
             Email
           </th> --}}
           <th>Code</th>
-          <th>Modification</th>
-          <th>Modification</th>
+         
       </tr>
     </thead>
     <tbody>
@@ -25,7 +24,7 @@
 
           <tr class="foobar">
              <td class="py-1">
-                <a href="/posts/verified/{{  $post->code  }}"><img href src="/images/face{{ $post->id }}.jpg" alt="image{{ $post->id }}"></a>
+                <a href="/posts/verified/{{  $post->code  }}"><img href src="/images/profil.png" alt="image{{ $post->id }}"></a>
             </td>
 
             <td>{{  $post->nom  }}</td>
@@ -33,7 +32,7 @@
             <td>{{ $post->poste }}</td>
             {{-- <td>{{ $post->email }}</td> --}}
             <td>{{ $post->code }}</td>
-            <td>
+            {{-- <td>
                 <a href="/posts/{{ $post->id }}/edit" class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-2 shaadow-1g
                     rounded hover:shadow">Modifier </a>
             </td>
@@ -44,7 +43,7 @@
                 <button  class="bg-red-500 ml-4 tracking-wide text-white px-6 py-2 inline-block mb-2 shaadow-1g
                 rounded hover:shadow">Supprimer </button>
                 </form>
-            </td>
+            </td> --}}
           </tr>
 
       @endforeach

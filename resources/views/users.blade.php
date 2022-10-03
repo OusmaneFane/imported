@@ -136,6 +136,7 @@
                         <th scope="col">absent</th>
                         {{-- <th scope="col">ottime</th> --}}
                         <th scope="col">worktime</th>
+                        <th scope="col">worktime final</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -159,7 +160,22 @@
                                 {{-- <td>{{ $user->early     }}</td> --}}
                                 <td>{{ $user->absent    }}</td>
                                 {{-- <td>{{ $user->ottime    }}</td> --}}
-                                <td>{{ $user->worktime  }}</td>
+                                <?php
+                                $one = "$user->worktime";
+                                $two = strtotime($one);
+                                $true = sum('$two');
+
+                                ?>
+                                <td>{{ $user->worktime  }}</td> 
+                                <?php 
+                                 $timestampun = "$user->clockin";
+                                 $timestamptwo = strtotime($timestampun);
+                                 $timestampthree = "$user->clockout";
+                                 $timestampfour = strtotime($timestampthree);
+                                 $final = $timestampfour - $timestamptwo  ;
+                                ?>
+                                <td>{{  date('H:i', $final)  }}</td>
+                               
                             </tr>
                            
                         @endforeach

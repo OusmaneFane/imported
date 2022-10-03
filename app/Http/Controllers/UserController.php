@@ -21,9 +21,12 @@ class UserController extends Controller
 
         $utilisateur = Utilisateur::where('id', '=', session('PasseUser'))->first();
         $users = User::where('no', '!=', null);
+        $userstwo = DB::table('users')->distinct()->get();
         $nbre_absent = User::where('absent', 'True')->count()-4;
         $nbre_retard = User::where('late', '!=','')->count();
         $worktime = User::where('worktime', '!=','')->sum('worktime');
+       
+
         $nbre_verify = User::where('worktime', '!=','')->count();
 
         if( $request->has('filtre'))
@@ -60,6 +63,7 @@ class UserController extends Controller
         }
 
          $users = $users->get();
+       
         
         }
 
@@ -83,8 +87,10 @@ class UserController extends Controller
         $nbre_absent = User::where('no', $id)->where('absent', 'True')->count()-4;
         $nbre_retard = User::where('no', $id)->where('late', '!=','')->count();
         $worktime = User::where('no', $id)->where('worktime', '!=','')->sum('worktime');
+       // $two = strtotime($worktime)-> Sum('worktime');
         $nbre_verify = User::where('no', $id)->where('worktime', '!=','')->count();
-
+        $worktimefinal = User::where('worktime', '!=','')->sum('worktime');
+       
 
         if( $request->has('filtre'))
         {
@@ -118,10 +124,13 @@ class UserController extends Controller
         if($request->has('present') )
         {
             $users->where('absent', '!=', 'True');
+
         }
          $users = $users->get();
+        
          return view ('posts.verified', ['users'=>$users, 'nbre_absent'=>$nbre_absent,
-                                        'nbre_retard'=>$nbre_retard, 'worktime'=>$worktime, 'nbre_verify'=>$nbre_verify]);
+                                        'nbre_retard'=>$nbre_retard, 'worktime'=>$worktime, 'nbre_verify'=>$nbre_verify,
+                                        'worktimefinal'=>$worktimefinal]);
 
     }
 
@@ -137,6 +146,21 @@ class UserController extends Controller
 
        // return view('posts.index', ['posts' => $posts, 'utilisateurs'=>$users]);
         return view('posts.search', ['posts' => $posts]);
+    }
+
+    public function conge()
+    {
+        return view('/posts/conge');
+    }
+    public function traitconge(Request $request)
+    {
+        request()->validate([
+            'name' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+            'password_confirm' => ['required'],
+
+        ]);
     }
 
 

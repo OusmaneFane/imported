@@ -21,15 +21,15 @@ class CreateUsersTable extends Migration
             $table->string('timetable')->default('');
             $table->string('onduty')->default('');
             $table->string('offduty')->default('');
-            $table->string('clockin')->default('');
-            $table->string('clockout')->default('');
+            $table->time('clockin');
+            $table->time('clockout');
             $table->string('normal')->default('');
             $table->string('realtime')->default('');
             $table->string('late')->default('');
             $table->string('early')->default('');
             $table->string('absent')->default('');
             $table->string('ottime')->default('');
-            $table->string('worktime')->default('');
+            $table->time('worktime');
            // $table->timestamp('email_verified_at')->nullable();
            // $table->string('password');
            // $table->rememberToken();

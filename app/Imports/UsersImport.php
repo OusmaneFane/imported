@@ -26,7 +26,7 @@ class UsersImport implements ToModel, WithHeadingRow
             'onduty' => $row['onduty'],
             'offduty' => $row['offduty'],
             'clockin' => $row['clockin'],
-            'clockout' => $row['clockout'],
+            'clockout'=> $row['clockout'],
             'normal' => $row['normal'],
             'realtime' => $row['realtime'],
             'late' => $row['late'],
