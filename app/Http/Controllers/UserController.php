@@ -25,7 +25,7 @@ class UserController extends Controller
         $nbre_absent = User::where('absent', 'True')->count()-4;
         $nbre_retard = User::where('late', '!=','')->count();
         $worktime = User::where('worktime', '!=','')->sum('worktime');
-       
+
 
         $nbre_verify = User::where('worktime', '!=','')->count();
 
@@ -63,8 +63,8 @@ class UserController extends Controller
         }
 
          $users = $users->get();
-       
-        
+
+
         }
 
         return view ('users', ['users'=>$users]);
@@ -87,10 +87,9 @@ class UserController extends Controller
         $nbre_absent = User::where('no', $id)->where('absent', 'True')->count()-4;
         $nbre_retard = User::where('no', $id)->where('late', '!=','')->count();
         $worktime = User::where('no', $id)->where('worktime', '!=','')->sum('worktime');
-       // $two = strtotime($worktime)-> Sum('worktime');
         $nbre_verify = User::where('no', $id)->where('worktime', '!=','')->count();
         $worktimefinal = User::where('worktime', '!=','')->sum('worktime');
-       
+
 
         if( $request->has('filtre'))
         {
@@ -102,7 +101,7 @@ class UserController extends Controller
                 $users->where('late', '!=', '');
             }
             else if($request->query('filtre') == 'verify'){
-                $users->where('worktime', '!=', '');
+                $users->where('worktime', '!=', '00:00:00');
             }
 
 
@@ -127,7 +126,7 @@ class UserController extends Controller
 
         }
          $users = $users->get();
-        
+
          return view ('posts.verified', ['users'=>$users, 'nbre_absent'=>$nbre_absent,
                                         'nbre_retard'=>$nbre_retard, 'worktime'=>$worktime, 'nbre_verify'=>$nbre_verify,
                                         'worktimefinal'=>$worktimefinal]);
@@ -152,15 +151,27 @@ class UserController extends Controller
     {
         return view('/posts/conge');
     }
-    public function traitconge(Request $request)
+    public function traite(Request $request)
     {
         request()->validate([
-            'name' => ['required'],
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-            'password_confirm' => ['required'],
-
+            'code' => ['required'],
+            'motif' => ['required'],
+            'startDate' => ['required'],
+            'endDate' => ['required'],
         ]);
+
+        $query = DB::table('proofs')
+        ->insert([
+            'code' => $request->code,
+            'motif' => $request->motif,
+            'startDate' => $request->startDate,
+            'endDate' => $request->endDate,
+        ]);
+        if($query){
+            return back()->with('success', 'Congé justifié avec succès');
+        }else {
+            return back()->with('fail', 'Quelque chose s\'est mal passée');
+        }
     }
 
 

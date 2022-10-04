@@ -53,7 +53,7 @@ Route::middleware(['isAdmin'])->group(function () {
 
   // congé
   Route::get('/posts/conge', [UserController::class, 'conge'])->name('conge');
-  Route::post('/posts/conge', [UserController::class, 'traitconge'])->name('conge');
+  Route::post('/posts/traite', [UserController::class, 'traite']);
 
 
 // import - Export

@@ -13,14 +13,12 @@
         <a href="?filtre=verify" type="button" class="btn bg-pink-600 transition duration-150 ease-in-out">Voir Toutes les heures de travail</a>
 </div>
 
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <button type="button" class="btn btn-primary  mb-6" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Filtrer</button>
-</div>
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Filtre</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <form action="#" method="get">
@@ -51,7 +49,7 @@
                  Présent
                 </label>
               </div>
-        
+
             {{-- <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
             rounded hover:shadow mt-2" type="submit" >Search</button> --}}
         </div>
@@ -84,17 +82,34 @@
             </tr>
             <tr>
                 <td>Nombre d'heure réalisé /mois</td>
+                {{-- @foreach ($users as $user)
+                    <?php
+                    $timestampun = "$final";
+                    $timestamptwo = strtotime($timestampun);
+                    $timestampthree = "$user->clockout";
+                    $timestampfour = strtotime($timestampthree);
+                    $total =strtotime($final)  ;
+                    $total = $total+1;
+
+                    //$somme = sum(strtotime($timestampthree));
+                    ?>
+
+                @endforeach --}}
+
                 @if($worktime > 140)
-                <td>{{ $worktime }} heures</td>
+                <td>{{ date('H:i', $worktime) }} heures</td>
                 @else
-                <td>{{ $worktime }} heures (Non achévé)</td>
+                <td>{{ date('H:i', $worktime) }} heures (Non achévé)</td>
                @endif
 
 
 
             </tr>
          </tbody>
-    </table>
+    </table><br>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="button" class="btn btn-primary  mb-6" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Filtrer</button>
+    </div>
 
 <div class="row">
 
@@ -118,6 +133,8 @@
                 <th scope="col">absent</th>
                 {{-- <th scope="col">ottime</th> --}}
                 <th scope="col">worktime</th>
+                <th scope="col">worktime final</th>
+
               </tr>
             </thead>
             <tbody>
@@ -139,6 +156,15 @@
                         <td>{{ $user->absent    }}</td>
                         {{-- <td>{{ $user->ottime    }}</td> --}}
                         <td>{{ $user->worktime  }}</td>
+                        <?php
+                                 $timestampun = "$user->clockin";
+                                 $timestamptwo = strtotime($timestampun);
+                                 $timestampthree = "$user->clockout";
+                                 $timestampfour = strtotime($timestampthree);
+                                 $final = $timestampfour - $timestamptwo  ;
+                                 //$somme = sum(strtotime($timestampthree));
+                         ?>
+                        <td>{{  date('H:i', $final)  }}</td>
                     </tr>
                 @endforeach
 
