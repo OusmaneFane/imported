@@ -22,7 +22,6 @@ class Adminware
       $userInfo = DB::table('utilisateurs')
       ->where('id', $request->session()->get('PasseUser'))
       ->first();
-     
         // dd($userInfo->user_type == 'Administrator');
         if($userInfo->user_type == 'Administrator'){
             return $next($request);
@@ -30,7 +29,7 @@ class Adminware
             else {
                  abort(401);
             }
-            if($request->url('/') == $request->url() ){
+        if($request->url('/') == $request->url() ){
                 abort(401);
             }
             

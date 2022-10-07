@@ -24,7 +24,7 @@
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
-</head>²
+</head>
 
 <body>
   <div class="container-scroller">
@@ -33,7 +33,7 @@
       <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
           <a class="navbar-brand brand-logo" href="index.html"><img src="/images/mlc.jpg" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/images/mlc.jpg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/images/logo.jpg" alt="logo"/></a>
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="typcn typcn-th-menu"></span>
           </button>
@@ -44,7 +44,7 @@
 
 
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <h1 class=" fs-1 opacity-100 shadow-none p-3 mb-5 bg-light rounded position-absolute top-30 start-50">Mali-Creances</h1>
+        {{-- <h1 class=" fs-1 opacity-100 shadow-none p-3 mb-5 bg-light rounded position-absolute top-30 start-50">Mali-Creances</h1> --}}
        <h1 class="btn btn-dark position-relative"><a href="/logout">Logout</a></h1>
       </div>
 

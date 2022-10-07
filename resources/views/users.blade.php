@@ -160,13 +160,7 @@
                                 {{-- <td>{{ $user->early     }}</td> --}}
                                 <td>{{ $user->absent    }}</td>
                                 {{-- <td>{{ $user->ottime    }}</td> --}}
-                                <?php
-                                // $one = "$user->worktime";
-                                // $two = strtotime($one);
-                                // $true = sum('$two');
-                               // $one = DB::table('users')->where('worktime', '!=','')->sum('worktime');
-
-                                ?>
+                              
                                 <td>{{ $user->worktime }}</td>
                                 <?php
                                  $timestampun = "$user->clockin";
@@ -174,7 +168,7 @@
                                  $timestampthree = "$user->clockout";
                                  $timestampfour = strtotime($timestampthree);
                                  $final = $timestampfour - $timestamptwo  ;
-                                 $somme = sum(strtotime($timestampthree));
+                                 //$somme = sum(strtotime($timestampthree));
                                 ?>
                                 <td>{{  date('H:i', $final)  }}</td>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Proof;
 use App\Models\Utilisateur;
 use PhpParser\Builder\Use_;
 use App\Imports\UsersImport;
@@ -24,10 +25,10 @@ class UserController extends Controller
         $userstwo = DB::table('users')->distinct()->get();
         $nbre_absent = User::where('absent', 'True')->count()-4;
         $nbre_retard = User::where('late', '!=','')->count();
-        $worktime = User::where('worktime', '!=','')->sum('worktime');
+        $worktime = User::where('worktime', '!=','')->sum(('worktime'));
 
 
-        $nbre_verify = User::where('worktime', '!=','')->count();
+        $nbre_verify = User::where('worktime', '!=','00:00:00')->count();
 
         if( $request->has('filtre'))
         {
@@ -39,7 +40,7 @@ class UserController extends Controller
                 $users->where('late', '!=', '');
             }
             else if($request->query('filtre') == 'verify'){
-                $users->where('worktime', '!=', '');
+                $users->where('worktime', '!=', '00:00:00');
             }
 
         }
@@ -84,17 +85,21 @@ class UserController extends Controller
     {
         $users = Carbon::now()->toDateTimeString();
         $users = User::where('no', $id);
-        $nbre_absent = User::where('no', $id)->where('absent', 'True')->count()-4;
+        $userConge = User::where('no', 'date',$id);
+        $nbre_absent = User::where('no', $id)->where('absent', 'True')->count()-6;
         $nbre_retard = User::where('no', $id)->where('late', '!=','')->count();
-        $worktime = User::where('no', $id)->where('worktime', '!=','')->sum('worktime');
-        $nbre_verify = User::where('no', $id)->where('worktime', '!=','')->count();
+        $worktime = User::where('no', $id)->where('worktime', '!=','00:00:00')->sum('worktime');
+        $nbre_verify = User::where('no', $id)->where('worktime', '!=','00:00:00')->count();
         $worktimefinal = User::where('worktime', '!=','')->sum('worktime');
+        $somme = 0;
+      
 
 
         if( $request->has('filtre'))
         {
             if($request->query('filtre') == 'absence'){
-               $users->where('absent', 'True');
+
+                $users->where('absent', 'True');
 
             }
             else if($request->query('filtre') == 'retard'){
@@ -127,7 +132,29 @@ class UserController extends Controller
         }
          $users = $users->get();
 
-         return view ('posts.verified', ['users'=>$users, 'nbre_absent'=>$nbre_absent,
+         $usersWithCongeField = [];
+         $conges = Proof::all();
+         foreach($conges as $conge){
+             $startCongeDate = (new Carbon($conge->startDate))->getTimestamp();
+                  $endCongeDate = (new Carbon($conge->endDate))->getTimestamp();
+
+                  foreach($users as $user){
+                     $userAbsentDate = (new Carbon($user->date))->getTimestamp();
+                     if($user->no == $conge->code && $userAbsentDate >= $startCongeDate && $userAbsentDate <= $endCongeDate){
+                         array_push($usersWithCongeField , array_merge($user->toArray(), ["isCongee" => true ]));
+                     }else{
+                         array_push($usersWithCongeField , array_merge($user->toArray(), ["isCongee" => false ]));
+                    }
+                }
+        }
+
+        foreach($users as $user){
+            $totalWorktime = (new Carbon($user->worktime))->getTimestamp();
+            $somme +=  $totalWorktime;
+        }
+
+
+         return view ('posts.verified', ['users'=>$usersWithCongeField, 'nbre_absent'=>$nbre_absent,
                                         'nbre_retard'=>$nbre_retard, 'worktime'=>$worktime, 'nbre_verify'=>$nbre_verify,
                                         'worktimefinal'=>$worktimefinal]);
 

@@ -15,7 +15,7 @@ class CreateProofsTable extends Migration
     {
         Schema::create('proofs', function (Blueprint $table) {
             $table->id();
-            $table->integer('code');
+            $table->string('code');
             $table->string('motif');
             $table->date('startDate');
             $table->date('endDate');

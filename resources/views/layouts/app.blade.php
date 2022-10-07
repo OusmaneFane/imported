@@ -43,7 +43,7 @@
 
 
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <h1 class=" fs-1 opacity-100 shadow-none p-3 mb-5 bg-light rounded position-absolute top-30 start-50">Mali-Creances</h1>
+        {{-- <h1 class=" fs-1 opacity-100 shadow-none p-3 mb-5 bg-light rounded position-absolute top-30 start-50">Mali-Creances</h1> --}}
 
        <h1 class="btn btn-dark position-relative"><a href="/logout">Logout</a></h1>
       </div>

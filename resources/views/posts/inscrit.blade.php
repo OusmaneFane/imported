@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <img class="rounded mx-auto d-block" src="/images/mlc.jpg" alt="logo">
+    <img class="rounded mx-auto d-block" src="/images/logo.jpg" alt="logo">
 
     <div id="container" class="mt-5">
         <!-- zone de connexion -->
@@ -35,29 +35,23 @@
             @csrf
             <div class="mt-0 ">
                 <h1 >Inscription</h1>
-            </div><br>
-            <label  class="col-md-4 col-form-label "><b>Login</b></label>
-            <div class="col-md-10">
-                <input type="text" class="form-control" placeholder="Entrer votre login" name="name" required>
-                <span class="text-danger">@error('name'){{ $message }}@enderror</span><br>
-            </div>
+                <div class="row g-3">
+                    <div class="col">
+                      <input type="text" class="form-control" name="name" placeholder="login" aria-label="First name">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" name="email" placeholder="Email" aria-label="Last name">
+                    </div>
+                  </div><br>
+                  <div class="row g-3">
+                    <div class="col">
+                        <input type="password" class="form-control" name="password" placeholder="mot de passe" aria-label="Email">
+                   </div>
+                    <div class="col">
+                      <input type="password" class="form-control" name="password_confirm" placeholder="password confirm" aria-label="Code">
+                    </div>
+                  </div><br>
 
-             <label  class="col-md-4 col-form-label "><b>Email</b></label>
-             <div class="col-md-10">
-                <input type="text" class="form-control" placeholder="Entrer votre email" name="email" required>
-                <span class="text-danger">@error('email'){{ $message }}@enderror</span><br>
-             </div>
-
-            <label  class="col-md-4 col-form-label "><b>Mot de passe </b></label>
-            <div class="col-md-10">
-                <input type="password" class="form-control" placeholder="Entrer votre mot de passe " name="password" required>
-                <span class="text-danger">@error('password'){{ $message }}@enderror</span><br>
-            </div>
-            <label  class="col-md-6 col-form-label "><b>Confirmer le Mot de passe </b></label>
-            <div class="col-md-10">
-                <input type="password" class="form-control" placeholder="Entrer votre mot de passe " name="password_confirm" required>
-                <span class="text-danger">@error('password_confirm'){{ $message }}@enderror</span><br>
-            </div>
             <div class="row mb-0">
                 <div class="col-md-8 offset-md-4">
                      <button type="submit" class="btn btn-primary" id='submit'>S'incrire</button>

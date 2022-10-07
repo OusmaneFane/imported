@@ -82,27 +82,17 @@
             </tr>
             <tr>
                 <td>Nombre d'heure réalisé /mois</td>
-                {{-- @foreach ($users as $user)
-                    <?php
+                    {{-- <?php
                     $timestampun = "$final";
                     $timestamptwo = strtotime($timestampun);
                     $timestampthree = "$user->clockout";
                     $timestampfour = strtotime($timestampthree);
                     $total =strtotime($final)  ;
                     $total = $total+1;
-
-                    //$somme = sum(strtotime($timestampthree));
-                    ?>
-
-                @endforeach --}}
-
-                @if($worktime > 140)
+                    ?> --}}
+                
                 <td>{{ date('H:i', $worktime) }} heures</td>
-                @else
-                <td>{{ date('H:i', $worktime) }} heures (Non achévé)</td>
-               @endif
-
-
+        
 
             </tr>
          </tbody>
@@ -139,27 +129,29 @@
             </thead>
             <tbody>
                 @foreach ($users as $user)
-                    <tr>
+                    <tr class="ligne">
                         {{-- <th scope="row">{{ $user->id }}</th> --}}
-                        <td>{{ $user->no        }}</td>
-                        <td>{{ $user->name      }}</td>
-                        <td>{{ date("d-m-Y",(new DateTime($user->date))->getTimestamp()) }}</td>
-                        {{-- <td>{{ $user->onduty    }}</td>
-                        <td>{{ $user->offduty   }}</td> --}}
-                        <td>{{ date('l', strtotime($user->date))}}</td>
-                        <td>{{ $user->timetable }}</td>
-                        {{-- <td>{{ $user->clockout  }}</td> --}}
-                        {{-- <td>{{ $user->normal    }}</td> --}}
-                        {{-- <td>{{ $user->realtime  }}</td> --}}
-                        <td>{{ $user->late      }}</td>
-                        {{-- <td>{{ $user->early     }}</td> --}}
-                        <td>{{ $user->absent    }}</td>
-                        {{-- <td>{{ $user->ottime    }}</td> --}}
-                        <td>{{ $user->worktime  }}</td>
+                        <td>{{ $user["no"]     }}</td>
+                        <td>{{ $user["name"]      }}</td>
+
+                        <td >{{ date("d-m-Y",(new DateTime($user["date"]))->getTimestamp()) }}
+                            {{
+                                $user["isCongee"] ? "(Congé)" : "(non justifié)"
+
+                             }}
+                         </td>
+
+
+                        <td>{{ date('l', strtotime($user["date"]))}}</td>
+                        <td>{{ $user["timetable"] }}</td>
+
+                        <td>{{ $user["late"]      }}</td>
+                        <td>{{ $user["absent"]    }}</td>
+                        <td>{{ $user["worktime"]  }}</td>
                         <?php
-                                 $timestampun = "$user->clockin";
+                                 $timestampun = $user["clockin"];
                                  $timestamptwo = strtotime($timestampun);
-                                 $timestampthree = "$user->clockout";
+                                 $timestampthree = $user["clockout"];
                                  $timestampfour = strtotime($timestampthree);
                                  $final = $timestampfour - $timestamptwo  ;
                                  //$somme = sum(strtotime($timestampthree));

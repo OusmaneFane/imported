@@ -13,51 +13,46 @@
             @method('PUT')
 
             @csrf
+            <div class="row g-3">
+                <div class="col">
+                  <input type="text" class="form-control" name="nom" placeholder="name" aria-label="First name" value="{{ $post->nom }}">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" name="prenom" placeholder="Last name" aria-label="Last name" value="{{ $post->prenom }}">
+                </div>
+              </div><br>
+              <div class="row g-3">
+                <div class="col">
+                    <input type="text" class="form-control" name="email" placeholder="Email" aria-label="Email" value="{{ $post->email }}">
 
-            <div class="mb-s">
-                <label class="font-bold text-gray-800" for="nom">Nom</label>
-                <input class="h-10 bg-white border border-gray-300 rounded py-4 px-3 mr-4 w-full
-                text-gray-600 text-sm focus:outline-non focus:border-gray-400 focus:ring-0" id="nom"
-                name="nom" value="{{ $post->nom }}">
-            </div>
 
-            <div class="mb-s">
-                <label class="font-bold text-gray-800" for="prenom">Prenom</label>
-                <textarea class="h-10 bg-white border border-gray-300 rounded py-4 px-3 mr-4 w-full
-                text-gray-600 text-sm focus:outline-non focus:border-gray-400 focus:ring-0" id="prenom"
-                name="prenom">{{ $post->prenom }}</textarea>
-            </div>
+               </div>
+                <div class="col">
+                  <input type="text" class="form-control" name="code" placeholder="code" aria-label="Code" value="{{ $post->code }}">
+                </div>
+              </div><br>
+              <div class="row g-3">
+                <div class="col">
+                    <select class="form-select" aria-label="Default select example" name="poste" value="{{ $post->poste }}">
+                        <option value="IT_Departement">IT_Departement</option>
+                        <option value="Ressources humaines">Ressources humaines</option>
+                        <option value="Recouvrement">Recouvrement</option>
+                        <option value="IOB">IOB</option>
+                        <option value="Direction">Direction</option>
+                        <option value="Controle">Controle</option>
+                        <option value="Comptabilité">Comptabilité</option>
 
-            <div class="mb-s">
-                <label class="font-bold text-gray-800" for="prenom">Poste</label>
-                <select class="form-select" aria-label="Default select example" name="poste">
-                    <option selected>Choisir le département</option>
-                    <option value="IT_Departement">IT_Departement</option>
-                    <option value="Ressources humaines">Ressources humaines</option>
-                    <option value="Recouvrement">Recouvrement</option>
-                    <option value="Stagiare">Stagiaire</option>
-                  </select>
-            </div>
+                        <option value="Stagiare">Stagiaire</option>
+                      </select>                </div>
 
-            <div class="mb-s">
-                <label class="font-bold text-gray-800" for="email">Email</label>
-                <textarea class="h-10 bg-white border border-gray-300 rounded py-4 px-3 mr-4 w-full
-                text-gray-600 text-sm focus:outline-non focus:border-gray-400 focus:ring-0" id="email"
-                name="email">{{ $post->email }}</textarea>
-            </div>
-            <div class="mb-s">
-                <label class="font-bold text-gray-800" for="code">Code</label>
-                <textarea class="h-10 bg-white border border-gray-300 rounded py-4 px-3 mr-4 w-full
-                text-gray-600 text-sm focus:outline-non focus:border-gray-400 focus:ring-0" id="code"
-                name="code">{{ $post->code }}</textarea>
-            </div>
+              </div><br>
 
             <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
             rounded hover:shadow">Modifier </button>
 
             <a href="/" class="bg-gray-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
             rounded hover:shadow">Annuler </a>
-           
+
         </form>
             <form  method="POST" action="/posts/{{ $post->id }}">
                 @csrf
@@ -68,7 +63,7 @@
             </form>
 
 
-    </div> 
+    </div>
     @endsection
 
 
