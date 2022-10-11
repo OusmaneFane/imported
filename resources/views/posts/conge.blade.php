@@ -9,8 +9,13 @@
 <label class="col-md-4 col-form-label "><b>Code employé</b></label>
 
         <div class="col-md-4">
-            <input type="text" class="form-control" placeholder="code" name="code" >
-       </div>
+                    <select name="code" class="form-control">
+                @foreach ($posts as $post)
+                    <option value="{{ $post->code }}">{{ $post->nom }} {{ $post->prenom }}</option>
+                @endforeach
+                    </select>   
+        </div>  
+  
        <label class="col-md-4 col-form-label "><b>Motif</b></label>
 
        <div class="col-md-4">

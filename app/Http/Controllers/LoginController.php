@@ -14,11 +14,69 @@ use App\Http\Controllers\UserController;
 
 class LoginController extends Controller
 {
-    public function administrator(Request $request)
+    public function administrator( Request $request)
     {
-        $done = DB::table('utilisateurs')->get();
-        $users = DB::table('users')->get();
-        return view('admins/dashboard', ['users'=>$users, 'utilisateurs'=>$done]);
+      $PasseUser = $request->session()->get('PasseUser');
+        $actel_user = Utilisateur::find($PasseUser);
+
+        $users = User::where('no', '!=', null);
+        if( $request->has('filtre'))
+        {
+            if($request->query('filtre') == 'absence'){
+
+                $users->where('absent', 'True');
+
+            }
+            else if($request->query('filtre') == 'retard'){
+                $users->where('late', '!=', '');
+            }
+            else if($request->query('filtre') == 'verify'){
+                $users->where('worktime', '!=', '00:00:00');
+            }
+
+
+        }
+
+        else if($request->has('startDate') && $request->has('endDate'))
+        {
+            $users->whereBetween('date',  [date($request->query('startDate')), date($request->query('endDate'))]);
+
+        }
+        if($request->has('absent') )
+        {
+            $users->where('absent', 'True');
+
+        }
+        if($request->has('late')){
+            $users->where('late', '!=', '');
+        }
+        if($request->has('present') )
+        {
+            $users->where('absent', '!=', 'True');
+        }
+        if($request->has('it') )
+        {
+            $users->where('department',  'IT');
+        }
+        if($request->has('direct') ){
+            $users->where('department', 'DiRECTION');
+        }
+        if($request->has('cont') ){
+            $users->where('department', 'CONTROLE');
+        }
+        if($request->has('compt') ){
+            $users->where('department', 'COMPTA');
+        }
+        if($request->has('banq') ){
+            $users->where('department', 'IOB');
+        }
+        if($request->has('recouv') ){
+            $users->where('department', 'RECOUVREMENT');
+        }
+
+          $users = $users->get();
+        // $users = DB::table('users')->get();
+        return view('admins/dashboard', ['users'=>$users, 'actel_user'=>$actel_user]);
     }
 
     public function exportUsers(Request $request)
@@ -74,7 +132,7 @@ class LoginController extends Controller
             if(Hash::check($request->password, $userInfo->password) ){
                 $request->session()->put('PasseUser', $userInfo->id);
                 if($userInfo->user_type== 'Administrator'){
-                  
+
                     return redirect('/admins/dashboard');
                 }
                 else{

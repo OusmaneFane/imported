@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('absent')->default('');
             $table->string('ottime')->default('');
             $table->time('worktime');
+            $table->string('department');
            // $table->timestamp('email_verified_at')->nullable();
            // $table->string('password');
            // $table->rememberToken();

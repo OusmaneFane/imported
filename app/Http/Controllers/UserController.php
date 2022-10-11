@@ -92,15 +92,10 @@ class UserController extends Controller
         $nbre_verify = User::where('no', $id)->where('worktime', '!=','00:00:00')->count();
         $worktimefinal = User::where('worktime', '!=','')->sum('worktime');
         $somme = 0;
-
-
-
         if( $request->has('filtre'))
         {
             if($request->query('filtre') == 'absence'){
-
                 $users->where('absent', 'True');
-
             }
             else if($request->query('filtre') == 'retard'){
                 $users->where('late', '!=', '');
@@ -108,19 +103,15 @@ class UserController extends Controller
             else if($request->query('filtre') == 'verify'){
                 $users->where('worktime', '!=', '00:00:00');
             }
-
-
         }
 
         else if($request->has('startDate') && $request->has('endDate'))
         {
             $users->whereBetween('date',  [date($request->query('startDate')), date($request->query('endDate'))]);
-
         }
         if($request->has('absent') )
         {
             $users->where('absent', 'True');
-
         }
         if($request->has('late')){
             $users->where('late', '!=', '');
@@ -128,9 +119,12 @@ class UserController extends Controller
         if($request->has('present') )
         {
             $users->where('absent', '!=', 'True');
-
         }
-         $users = $users->get();
+
+
+
+
+        $users = $users->get();
 
          $usersWithCongeField = [];
          $conges = Proof::all();
@@ -141,26 +135,31 @@ class UserController extends Controller
                   foreach($users as $user){
                      $userAbsentDate = (new Carbon($user->date))->getTimestamp();
                      if($user->no == $conge->code ){
-
-
-                      if($userAbsentDate >= $startCongeDate && $userAbsentDate <= $endCongeDate){
+                         if($userAbsentDate >= $startCongeDate && $userAbsentDate <= $endCongeDate){
                          array_push($usersWithCongeField , array_merge($user->toArray(), ["isCongee" => true ]));
                      }else{
                          array_push($usersWithCongeField , array_merge($user->toArray(), ["isCongee" => false ]));
-                    }
-                }
+                         }
+                     
+                }else{
+                    array_push($usersWithCongeField , array_merge($user->toArray(), ["isCongee" => false ]));
+
                 }
         }
+    }
 
-        foreach($users as $user){
-            $totalWorktime = (new Carbon($user->worktime))->getTimestamp();
-            $somme +=  $totalWorktime;
-        }
-
-
-         return view ('posts.verified', ['users'=>$usersWithCongeField, 'nbre_absent'=>$nbre_absent,
+    $sommeTime = 0;
+    foreach($usersWithCongeField as $user){
+        $timestampun = $user["clockin"];
+        $timestamptwo = strtotime($timestampun);
+        $timestampthree = $user["clockout"];
+        $timestampfour = strtotime($timestampthree);
+        $sommeTime += $timestampfour - $timestamptwo  ;
+    }
+      
+         return view ('posts.verified', ['users'=>$usersWithCongeField,  'nbre_absent'=>$nbre_absent,
                                         'nbre_retard'=>$nbre_retard, 'worktime'=>$worktime, 'nbre_verify'=>$nbre_verify,
-                                        'worktimefinal'=>$worktimefinal]);
+                                        'worktimefinal'=>$worktimefinal, 'sommeTime'=>$sommeTime]);
 
     }
 
@@ -180,7 +179,8 @@ class UserController extends Controller
 
     public function conge()
     {
-        return view('/posts/conge');
+        $posts = Post::all();
+        return view('/posts/conge', ['posts'=>$posts]);
     }
     public function traite(Request $request)
     {

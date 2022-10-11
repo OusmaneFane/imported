@@ -23,7 +23,7 @@ class Adminware
       ->where('id', $request->session()->get('PasseUser'))
       ->first();
         // dd($userInfo->user_type == 'Administrator');
-        if($userInfo->user_type == 'Administrator'){
+        if(!empty($userInfo) && $userInfo->user_type == 'Administrator'){
             return $next($request);
             }
             else {

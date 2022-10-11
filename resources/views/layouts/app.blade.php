@@ -12,38 +12,44 @@
     <link rel="stylesheet" href="{{ url('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css')}}" />
     <link rel="stylesheet" href="{{ url('assets/css/style.css')}}" />
     <link rel="shortcut icon" href="{{ url('assets/images/favicon.png') }}" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+  <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
   </head>
   <body>
     <div class="container-scroller">
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
           {{-- <a class="sidebar-brand brand-logo" href="index.html"><img src="/assets/images/logo.svg" alt="logo" /></a> --}}
-          <span>Welcome </span>
-          <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="index.html"><img src="/assets/images/logo-mini.svg" alt="logo" /></a>
+          <span></span>
+          {{-- <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="index.html"><img src="/assets/images/logo-mini.svg" alt="logo" /></a> --}}
         </div>
         <ul class="nav">
           <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
               <div class="nav-profile-image">
-                <img src="/images/mlc.jpg" alt="profile" />
+                <img src="/assets/images/faces/face1.jpg" alt="profile" />
                 <span class="login-status online"></span>
                 <!--change to offline or busy as needed-->
               </div>
               <div class="nav-profile-text d-flex flex-column pr-3">
                 <span class="font-weight-medium mb-2">MALI-CREANCES</span>
-              
+                <span class="font-weight-normal">$8,753.00</span>
               </div>
-            
+              {{-- <span class="badge badge-danger text-white ml-3 rounded">3</span> --}}
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('board') }}">
+            <a class="nav-link" href="/admins/dashboard">
               <i class="mdi mdi-home menu-icon"></i>
-              <span class="menu-title">Liste des employés</span>
+              <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
@@ -54,9 +60,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('import-data') }}">
+            <a class="nav-link" href="{{ route('board') }}">
               <i class="mdi mdi-contacts menu-icon"></i>
-              <span class="menu-title">Importer un ficher</span>
+              <span class="menu-title">Liste des employés</span>
             </a>
           </li>
           <li class="nav-item">
@@ -72,9 +78,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
+            <a class="nav-link" href="{{ route('import-data') }}">
               <i class="mdi mdi-table-large menu-icon"></i>
-              <span class="menu-title">Tables</span>
+              <span class="menu-title">Importer un fichier</span>
             </a>
           </li>
 
@@ -106,13 +112,13 @@
             <div class="tiles dark"></div>
           </div>
         </div>
-        {{-- <nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
+        <nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
           <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
             <a class="navbar-brand brand-logo-mini align-self-center d-lg-none" href="index.html"><img src="/assets/images/logo-mini.svg" alt="logo" /></a>
             <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
               <i class="mdi mdi-menu"></i>
             </button>
-            <ul class="navbar-nav">
+            {{-- <ul class="navbar-nav">
               <li class="nav-item dropdown">
                 <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
                   <i class="mdi mdi-bell-outline"></i>
@@ -194,7 +200,7 @@
                   </div>
                 </form>
               </li>
-            </ul>
+            </ul> --}}
             <ul class="navbar-nav navbar-nav-right ml-lg-auto">
               <li class="nav-item dropdown d-none d-xl-flex border-0">
                 <a class="nav-link dropdown-toggle" id="languageDropdown" href="#" data-toggle="dropdown">
@@ -223,52 +229,51 @@
               <span class="mdi mdi-menu"></span>
             </button>
           </div>
-        </nav> --}}
+        </nav>
         <div class="main-panel">
-          
+            <div class="content-wrapper pb-0">
+                <main>
+                    @yield('content')
+                </main>
+            </div>
 
-            <main>
-                @yield('content')
-            </main>
 
-            <footer class="footer">
-                <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                  <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-                  <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard template</a> from Bootstrapdash.com</span>
-                </div>
-              </footer>
 
         </div>
         <!-- main-panel ends -->
       </div>
 
       <!-- page-body-wrapper ends -->
-      
     </div>
 
     <!-- container-scroller -->
-    
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard template</a> from Bootstrapdash.com</span>
+        </div>
+      </footer>
 
     <!-- plugins:js -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.resize.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.categories.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.fillbetween.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.stack.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.pie.js"></script>
+    <script src="/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.resize.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.categories.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.fillbetween.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.stack.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.pie.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <script src="assets/js/hoverable-collapse.js"></script>
-    <script src="assets/js/misc.js"></script>
+    <script src="/assets/js/off-canvas.js"></script>
+    <script src="/assets/js/hoverable-collapse.js"></script>
+    <script src="/assets/js/misc.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="assets/js/dashboard.js"></script>
+    <script src="/assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
     <script>
         $(document).ready( function () {
@@ -278,7 +283,7 @@
       <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
       <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet"
           type="text/css" />
-    
+
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
       <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
       <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>

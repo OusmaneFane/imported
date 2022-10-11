@@ -82,16 +82,9 @@
             </tr>
             <tr>
                 <td>Nombre d'heure réalisé /mois</td>
-                    {{-- <?php
-                    $timestampun = "$final";
-                    $timestamptwo = strtotime($timestampun);
-                    $timestampthree = "$user->clockout";
-                    $timestampfour = strtotime($timestampthree);
-                    $total =strtotime($final)  ;
-                    $total = $total+1;
-                    ?> --}}
+                  
 
-                <td>{{ date('H:i', $worktime) }} heures</td>
+                <td>{{ round($sommeTime / 3600) . "H " . ($sommeTime / 60) %60 . "min" . $sommeTime% 60}} heures</td>
 
 
             </tr>

@@ -34,6 +34,7 @@ class UsersImport implements ToModel, WithHeadingRow
             'absent' => $row['absent'],
             'ottime' => $row['ottime'],
             'worktime' => $row['worktime'],
+            'department'=>$row['department']
             //'password' => Hash::make($row['password']),
         ]);
     }

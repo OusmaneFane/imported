@@ -1,12 +1,9 @@
 @extends('layouts.master')
 
-@section('title', 'MLC |  Pointeuse ')
+{{-- @section('title', 'MLC |  Pointeuse ') --}}
 @section('content')
 
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -32,10 +29,8 @@
                                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                           Insérer un fichier
                                         </button>
-                                        <a href="{{ route('board') }}" class="bg-pink-400 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
-                                        rounded hover:shadow">Liste des employés</a>
-                                        <a href="{{ route('conge') }}" class="bg-pink-400 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
-                                        rounded hover:shadow">Prendre un coongé</a>
+                                        <a href="{{ route('board') }}" class="btn btn-primary">Liste des employés</a>
+                                        <a href="{{ route('conge') }}" class="btn btn-primary">Prendre un coongé</a>
                                       </p>
 
                                       <div class="collapse" id="collapseExample">
@@ -79,14 +74,47 @@
                 @csrf
                 <!-- The start date field -->
                 <div class="col-sm-12 ml-auto">
-               <label for="">Start Date</label>
+                    <div class="text-center">
+                      <label class="  badge text-bg-warning " for=""><b>Par Date</b></label><br>
+                    </div>
+               <label  for=""><b>Start Date</b></label>
                 <input class="form-control  " type="date" name="startDate" placeholder="Start date" />
 
                 <!-- The end date field -->
-                <label for="">End Date</label>
+                <label for=""><b>End Date</b></label>
                 <input class="form-control" type="date" name="endDate" placeholder="End date" />
                 {{-- <label for="">Nom</label>
                 <input class="form-control" type="text" name="name" placeholder="Nom" /> --}}
+                <div class="text-center">
+                <label class="badge text-bg-primary mb-auto mt-3" for=""><b>Par Departement</b></label>
+                </div><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="it" id="inlineRadio1" value="IT">
+                    <label class="form-check-label" for="inlineRadio1">IT</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="direct" id="inlineRadio2" value="DIRECTION">
+                    <label class="form-check-label" for="inlineRadio2">DIRECTION</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="cont" id="inlineRadio3" value="CONTROLE" >
+                    <label class="form-check-label" for="inlineRadio3">CONTROLE</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="compt" id="inlineRadio1" value="COMPTA">
+                    <label class="form-check-label" for="inlineRadio1">COMPT</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="banq" id="inlineRadio2" value="IOB">
+                    <label class="form-check-label" for="inlineRadio2">IOB</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="recouv" id="inlineRadio3" value="RECOUVREMENT" >
+                    <label class="form-check-label" for="inlineRadio3">RECOUV</label>
+                  </div><br>
+                  <div class="text-center">
+                  <label class=" badge text-bg-danger mb-auto mt-3" for=""><b>Par Statut</b></label>
+                  </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="absent" name="absent"id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">
@@ -106,8 +134,8 @@
                     </label>
                   </div>
 
-                {{-- <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
-                rounded hover:shadow mt-2" type="submit" >Search</button> --}}
+
+
             </div>
 
               <div class="modal-footer">
@@ -122,10 +150,10 @@
 
                                 {{-- Table --}}
 
-       
 
-            <div class="table-responsive table table-striped table-hover">
-                <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered" style="width: 100%;" aria-describedby="example_info">
+
+         <div class="table-responsive table table-striped table-hover">
+            <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered" style="width: 100%;" aria-describedby="example_info">
                     <thead>
                       <tr>
                         {{-- <th scope="col">ID</th> --}}
@@ -137,7 +165,7 @@
                         {{-- <th scope="col">clockin</th>
                         <th scope="col">Clockout</th> --}}
                         {{-- <th scope="col">normal</th> --}}
-                        {{-- <th scope="col">realtime</th> --}}
+                        <th scope="col">Department</th>
                         <th scope="col">late</th>
                         {{-- <th scope="col">early</th> --}}
                         <th scope="col">absent</th>
@@ -158,7 +186,7 @@
                                 {{-- <td>{{ $user->clockin   }}</td>
                                 <td>{{ $user->clockout  }}</td> --}}
                                 {{-- <td>{{ $user->normal    }}</td> --}}
-                                {{-- <td>{{ $user->realtime  }}</td> --}}
+                                <td>{{ $user->department  }}</td>
                                 <td>{{ $user->late      }}</td>
                                 {{-- <td>{{ $user->early     }}</td> --}}
                                 <td>{{ $user->absent    }}</td>
@@ -169,29 +197,12 @@
                         @else
                             <tr>
                                 <td colspan="3">Aucune donnée trouvée</td>
-                            
+
                             </tr>
                     @endif
                     </tbody>
-                  </table>
+                </table>
             </div>
-   
-   
 
-<!-- base:js -->
-<script src="vendors/js/vendor.bundle.base.js"></script>
-<!-- endinject -->
-<!-- Plugin js for this page-->
-<script src="vendors/chart.js/Chart.min.js"></script>
-<!-- End plugin js for this page-->
-<!-- inject:js -->
-<script src="js/off-canvas.js"></script>
-<script src="js/hoverable-collapse.js"></script>
-<script src="js/template.js"></script>
-<script src="js/settings.js"></script>
-<script src="js/todolist.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page-->
-<script src="js/dashboard.js"></script>
-<!-- End custom js for this page-->
+
 @endsection
