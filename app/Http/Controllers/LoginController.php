@@ -14,10 +14,11 @@ use App\Http\Controllers\UserController;
 
 class LoginController extends Controller
 {
-    public function administrator()
+    public function administrator(Request $request)
     {
+        $done = DB::table('utilisateurs')->get();
         $users = DB::table('users')->get();
-        return view('admins/dashboard', ['users'=>$users]);
+        return view('admins/dashboard', ['users'=>$users, 'utilisateurs'=>$done]);
     }
 
     public function exportUsers(Request $request)
@@ -73,6 +74,7 @@ class LoginController extends Controller
             if(Hash::check($request->password, $userInfo->password) ){
                 $request->session()->put('PasseUser', $userInfo->id);
                 if($userInfo->user_type== 'Administrator'){
+                  
                     return redirect('/admins/dashboard');
                 }
                 else{

@@ -8,6 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
 
+
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -31,11 +32,8 @@
                   <th>Nom</th>
                   <th> Prenom</th>
                   <th> Poste</th>
-                  {{-- <th>
-                    Email
-                  </th> --}}
                   <th>Code</th>
-                  <th>Modification</th>
+                  <th>Modificaion</th>
                   <th>Modification</th>
               </tr>
             </thead>

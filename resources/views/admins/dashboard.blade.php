@@ -10,6 +10,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
+
 <div class="col-lg-12 grid-margin stretch-card ">
     <div class="card d-block p-2">
         <div class="card-body">
@@ -71,7 +72,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Filter par:</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form action="#" method="get">
@@ -121,10 +122,10 @@
 
                                 {{-- Table --}}
 
-        <div class="row">
+       
 
             <div class="table-responsive table table-striped table-hover">
-                <table id="table_id"  class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
+                <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered" style="width: 100%;" aria-describedby="example_info">
                     <thead>
                       <tr>
                         {{-- <th scope="col">ID</th> --}}
@@ -174,10 +175,9 @@
                     </tbody>
                   </table>
             </div>
-        </div>
-    </div>
-    </div>
-</div>
+   
+   
+
 <!-- base:js -->
 <script src="vendors/js/vendor.bundle.base.js"></script>
 <!-- endinject -->

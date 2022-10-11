@@ -92,7 +92,7 @@ class UserController extends Controller
         $nbre_verify = User::where('no', $id)->where('worktime', '!=','00:00:00')->count();
         $worktimefinal = User::where('worktime', '!=','')->sum('worktime');
         $somme = 0;
-      
+
 
 
         if( $request->has('filtre'))
@@ -140,11 +140,15 @@ class UserController extends Controller
 
                   foreach($users as $user){
                      $userAbsentDate = (new Carbon($user->date))->getTimestamp();
-                     if($user->no == $conge->code && $userAbsentDate >= $startCongeDate && $userAbsentDate <= $endCongeDate){
+                     if($user->no == $conge->code ){
+
+
+                      if($userAbsentDate >= $startCongeDate && $userAbsentDate <= $endCongeDate){
                          array_push($usersWithCongeField , array_merge($user->toArray(), ["isCongee" => true ]));
                      }else{
                          array_push($usersWithCongeField , array_merge($user->toArray(), ["isCongee" => false ]));
                     }
+                }
                 }
         }
 

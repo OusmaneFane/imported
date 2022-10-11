@@ -8,9 +8,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
 <div class="mb-4">
-        <a href="?filtre=absence" type="button " class="btn bg-pink-600 transition duration-150 ease-in-out ">Voir tous les absences </a>
-        <a href="?filtre=retard" type="button" class="btn bg-gray-500 transition duration-150 ease-in-out">Voir tous les retards</a>
-        <a href="?filtre=verify" type="button" class="btn bg-pink-600 transition duration-150 ease-in-out">Voir Toutes les heures de travail</a>
+        <a href="?filtre=absence" type="button " class="btn btn-primary">Voir tous les absences </a>
+        <a href="?filtre=retard" type="button" class="btn btn-primary">Voir tous les retards</a>
+        <a href="?filtre=verify" type="button" class="btn btn-primary">Voir Toutes les heures de travail</a>
 </div>
 
 
@@ -63,7 +63,7 @@
       </div>
     </div>
 
-    <table id="" class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
+    <table  class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
         <thead>
           <tr>
             {{-- <th scope="col">ID</th> --}}
@@ -90,9 +90,9 @@
                     $total =strtotime($final)  ;
                     $total = $total+1;
                     ?> --}}
-                
+
                 <td>{{ date('H:i', $worktime) }} heures</td>
-        
+
 
             </tr>
          </tbody>
@@ -104,8 +104,8 @@
 <div class="row">
 
     <div class="table-responsive table table-striped table-hover">
-        <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" aria-describedby="example_info">
-            <thead>
+        <table id="table_id" class="display nowrap dataTable dtr-inline collapsed table table-bordered" style="width: 100%;" aria-describedby="example_info">
+    <thead>
               <tr>
                 {{-- <th scope="col">ID</th> --}}
                 <th scope="col">no</th>
@@ -129,16 +129,17 @@
             </thead>
             <tbody>
                 @foreach ($users as $user)
-                    <tr class="ligne">
+                    <tr  >
                         {{-- <th scope="row">{{ $user->id }}</th> --}}
                         <td>{{ $user["no"]     }}</td>
                         <td>{{ $user["name"]      }}</td>
 
-                        <td >{{ date("d-m-Y",(new DateTime($user["date"]))->getTimestamp()) }}
+                        <td>{{ date("d-m-Y",(new DateTime($user["date"]))->getTimestamp()) }}
                             {{
-                                $user["isCongee"] ? "(Congé)" : "(non justifié)"
+                                $user["isCongee"] ? "(Congé)" : ""
+                            }}
 
-                             }}
+
                          </td>
 
 
