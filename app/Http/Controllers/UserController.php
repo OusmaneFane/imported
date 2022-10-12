@@ -18,8 +18,10 @@ class UserController extends Controller
     //
     public function list(Request $request)
     {
-        if(session()->has('PasseUser')){
 
+        if(session()->has('PasseUser')){
+$PasseUser = $request->session()->get('PasseUser');
+        $actel_user = Utilisateur::find($PasseUser);
         $utilisateur = Utilisateur::where('id', '=', session('PasseUser'))->first();
         $users = User::where('no', '!=', null);
         $userstwo = DB::table('users')->distinct()->get();
@@ -68,7 +70,7 @@ class UserController extends Controller
 
         }
 
-        return view ('users', ['users'=>$users]);
+        return view ('users', ['users'=>$users, 'actel_user'=>$actel_user]);
     }
     public function import_user(Request $request)
     {
@@ -83,6 +85,8 @@ class UserController extends Controller
     }
     public function verified($id, Request $request)
     {
+        $PasseUser = $request->session()->get('PasseUser');
+        $actel_user = Utilisateur::find($PasseUser);
         $users = Carbon::now()->toDateTimeString();
         $users = User::where('no', $id);
         $userConge = User::where('no', 'date',$id);
@@ -159,7 +163,7 @@ class UserController extends Controller
       
          return view ('posts.verified', ['users'=>$usersWithCongeField,  'nbre_absent'=>$nbre_absent,
                                         'nbre_retard'=>$nbre_retard, 'worktime'=>$worktime, 'nbre_verify'=>$nbre_verify,
-                                        'worktimefinal'=>$worktimefinal, 'sommeTime'=>$sommeTime]);
+                                        'worktimefinal'=>$worktimefinal, 'sommeTime'=>$sommeTime, 'actel_user'=>$actel_user]);
 
     }
 
@@ -167,20 +171,24 @@ class UserController extends Controller
     {
         return view('auth.identif');
     }
-    public function search()
+    public function search(Request $request)
     {
+        $PasseUser = $request->session()->get('PasseUser');
+        $actel_user = Utilisateur::find($PasseUser);
         $posts = Post::all();
         $users = DB::table('utilisateurs')->get();
 
 
        // return view('posts.index', ['posts' => $posts, 'utilisateurs'=>$users]);
-        return view('posts.search', ['posts' => $posts]);
+        return view('posts.search', ['posts' => $posts, 'actel_user'=>$actel_user]);
     }
 
-    public function conge()
+    public function conge(Request $request)
     {
+        $PasseUser = $request->session()->get('PasseUser');
+        $actel_user = Utilisateur::find($PasseUser);
         $posts = Post::all();
-        return view('/posts/conge', ['posts'=>$posts]);
+        return view('/posts/conge', ['posts'=>$posts, 'actel_user'=>$actel_user]);
     }
     public function traite(Request $request)
     {
