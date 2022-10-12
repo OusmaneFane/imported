@@ -88,30 +88,14 @@
                 <div class="text-center">
                 <label class="badge text-bg-primary mb-auto mt-3" for=""><b>Par Departement</b></label>
                 </div><br>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="it" id="inlineRadio1" value="IT">
-                    <label class="form-check-label" for="inlineRadio1">IT</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="direct" id="inlineRadio2" value="DIRECTION">
-                    <label class="form-check-label" for="inlineRadio2">DIRECTION</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="cont" id="inlineRadio3" value="CONTROLE" >
-                    <label class="form-check-label" for="inlineRadio3">CONTROLE</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="compt" id="inlineRadio1" value="COMPTA">
-                    <label class="form-check-label" for="inlineRadio1">COMPT</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="banq" id="inlineRadio2" value="IOB">
-                    <label class="form-check-label" for="inlineRadio2">IOB</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="recouv" id="inlineRadio3" value="RECOUVREMENT" >
-                    <label class="form-check-label" for="inlineRadio3">RECOUV</label>
-                  </div><br>
+                <div class="col">
+                    <select class="form-select" aria-label="Default select example" name="poste">
+                        @foreach ($departs as $depart)
+                        <option value="{{ $depart->department_name }}">{{ $depart->department_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                   <div class="text-center">
                   <label class=" badge text-bg-danger mb-auto mt-3" for=""><b>Par Statut</b></label>
                   </div>

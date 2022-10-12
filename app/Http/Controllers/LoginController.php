@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 
+use App\Models\Depart;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,7 @@ class LoginController extends Controller
 {
     public function administrator( Request $request)
     {
+        $departs = Depart::all();
       $PasseUser = $request->session()->get('PasseUser');
         $actel_user = Utilisateur::find($PasseUser);
 
@@ -76,7 +78,7 @@ class LoginController extends Controller
 
           $users = $users->get();
         // $users = DB::table('users')->get();
-        return view('admins/dashboard', ['users'=>$users, 'actel_user'=>$actel_user]);
+        return view('admins/dashboard', ['users'=>$users, 'actel_user'=>$actel_user, 'departs'=>$departs]);
     }
 
     public function exportUsers(Request $request)

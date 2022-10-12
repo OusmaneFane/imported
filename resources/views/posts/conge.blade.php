@@ -6,31 +6,45 @@
 
 @csrf
 <div class="col-sm-12 ml-auto">
-<label class="col-md-4 col-form-label "><b>Code employé</b></label>
 
-        <div class="col-md-4">
-                    <select name="code" class="form-control">
-                @foreach ($posts as $post)
-                    <option value="{{ $post->code }}">{{ $post->nom }} {{ $post->prenom }}</option>
-                @endforeach
-                    </select>   
-        </div>  
-  
-       <label class="col-md-4 col-form-label "><b>Motif</b></label>
 
-       <div class="col-md-4">
-           <input type="text" class="form-control" placeholder="motif du congé" name="motif" >
-      </div>
 
-    <label class="col-md-4 col-form-label" for="">Start </label>
-     <input class="form-control col-md-4  " type="date" name="startDate" placeholder="Start date" />
 
-     <!-- The end date field -->
-     <label for="">End </label>
-     <input class="form-control col-md-4" type="date" name="endDate" placeholder="End date" />
-   <div class="mt-4">
+        <div class="row g-3">
+            <div class="col">
+                <label class="col-md-4 col-form-label "><b>Code employé</b></label>
+                <input type="text" class="form-control " placeholder="motif du congé" name="motif" >
+            </div>
+            <div class="col">
+                <div class="col">
+                    <label class="col-md-4 col-form-label "><b>Nom </b></label>
+
+                    <select class="form-select" aria-label="Default select example" name="poste">
+                       @foreach ($posts as $post)
+                           <option value="{{ $post->code }}">{{ $post->nom }} {{ $post->prenom }}</option>
+                       @endforeach
+                           </select>
+               </div>
+             </div>
+          </div><br>
+
+
+          <div class="row g-3">
+            <div class="col">
+                <label class="col-md-4 col-form-label" for=""><b>Start </b></label>
+                <input class="form-control   " type="date" name="startDate" placeholder="Start date" />
+                      </div>
+            <div class="col">
+                <label class="col-md-4 col-form-label" for=""><b>End </b></label>
+                <input class="form-control  " type="date" name="endDate" placeholder="End date" />
+                       </div>
+          </div><br>
+
+
+   <div class="mt-4 text-center">
      <button type="submit" class="btn btn-primary">Enregistrer</button>
    </div>
+</div>
 </div>
 </form>
 
