@@ -82,9 +82,9 @@
             </tr>
             <tr>
                 <td>Nombre d'heure réalisé /mois</td>
-                  
 
-                <td>{{ round($sommeTime / 3600) . "H " . ($sommeTime / 60) %60 . "min" . $sommeTime% 60}} heures</td>
+
+                <td>{{ round($sommeTime / 3600) . "H " . ($sommeTime / 60) %60 . "min" . $sommeTime% 60}}</td>
 
 
             </tr>

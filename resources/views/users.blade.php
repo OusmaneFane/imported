@@ -160,7 +160,7 @@
                                 {{-- <td>{{ $user->early     }}</td> --}}
                                 <td>{{ $user->absent    }}</td>
                                 {{-- <td>{{ $user->ottime    }}</td> --}}
-                              
+
                                 <td>{{ $user->worktime }}</td>
                                 <?php
                                  $timestampun = "$user->clockin";

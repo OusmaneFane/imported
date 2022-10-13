@@ -138,18 +138,20 @@ $PasseUser = $request->session()->get('PasseUser');
 
                   foreach($users as $user){
                      $userAbsentDate = (new Carbon($user->date))->getTimestamp();
+
                      if($user->no == $conge->code ){
                          if($userAbsentDate >= $startCongeDate && $userAbsentDate <= $endCongeDate){
                          array_push($usersWithCongeField , array_merge($user->toArray(), ["isCongee" => true ]));
                      }else{
                          array_push($usersWithCongeField , array_merge($user->toArray(), ["isCongee" => false ]));
-                         }
-                     
-                }else{
-                    array_push($usersWithCongeField , array_merge($user->toArray(), ["isCongee" => false ]));
+                        }
 
-                }
-        }
+                    }else {
+                        array_push($usersWithCongeField , array_merge($user->toArray(), ["isCongee" => false ]));
+
+                     }
+
+             }
     }
 
     $sommeTime = 0;
@@ -160,7 +162,7 @@ $PasseUser = $request->session()->get('PasseUser');
         $timestampfour = strtotime($timestampthree);
         $sommeTime += $timestampfour - $timestamptwo  ;
     }
-      
+
          return view ('posts.verified', ['users'=>$usersWithCongeField,  'nbre_absent'=>$nbre_absent,
                                         'nbre_retard'=>$nbre_retard, 'worktime'=>$worktime, 'nbre_verify'=>$nbre_verify,
                                         'worktimefinal'=>$worktimefinal, 'sommeTime'=>$sommeTime, 'actel_user'=>$actel_user]);
