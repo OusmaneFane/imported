@@ -64,3 +64,6 @@ Route::middleware(['isAdmin'])->group(function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//
+Route::post('/email/index', [LoginController::class, 'envoi'])->name('send.email');

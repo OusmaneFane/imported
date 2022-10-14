@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Mail;
 use App\Models\Post;
-use App\Models\User;
 
+use App\Models\User;
 use App\Models\Depart;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
@@ -15,6 +16,27 @@ use App\Http\Controllers\UserController;
 
 class LoginController extends Controller
 {
+
+public function envoi(Request $request){
+    request()->validate([
+        'email'=> 'required',
+        'message' => 'required',
+        'subject' => 'required',
+    ]);
+
+    $email_data = [
+        'recipient' => 'dev@malicreances.com',
+        'fromEmail' => $request->email,
+        'subject' =>$request->subject,
+        'body' => $request->message,
+    ];
+    Mail::send('email-template', $email_data, function($message) use ($email_data){
+        $message->to($email_data['recipient'])
+                ->from($email_data['fromEmail'])
+                ->subject($email_data['subject']);
+    });
+}
+
     public function administrator( Request $request)
     {
         $departs = Depart::all();

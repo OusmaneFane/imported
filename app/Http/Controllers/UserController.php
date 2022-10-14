@@ -85,6 +85,7 @@ $PasseUser = $request->session()->get('PasseUser');
     }
     public function verified($id, Request $request)
     {
+
         $PasseUser = $request->session()->get('PasseUser');
         $actel_user = Utilisateur::find($PasseUser);
         $users = Carbon::now()->toDateTimeString();

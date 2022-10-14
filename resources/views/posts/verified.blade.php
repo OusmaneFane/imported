@@ -7,6 +7,51 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
+
+<form action="{{ route('send.email') }}" method="post">
+    <div class="results">
+        @if(Session::get('fail'))
+        <div class="alert alert-danger">
+            {{ Session::get('fail') }}
+        </div>
+        @endif
+    </div>
+        @csrf
+ 
+    <div class="form-outline mt-auto">
+        <label class="form-label" for="form2Example17">Email</label>
+      <input type="text" id="form2Example17" name="email" class="form-control form-control-lg" />
+      @if ($errors->has('email'))
+        <span ><strong>{{ $errors->first('email') }}</strong></span>
+      @endif
+
+    </div>
+    <div class="form-outline mt-auto">
+        <label class="form-label" for="form2Example17">Subject</label>
+      <input type="text" id="form2Example17" name="subject" class="form-control form-control-lg" />
+      @if ($errors->has('subject'))
+        <span ><strong>{{ $errors->first('subject') }}</strong></span>
+      @endif
+
+    </div>
+
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example27">Message</label>
+      <input type="text" name="message" id="form2Example27" class="form-control form-control-lg" />
+      @if ($errors->has('message'))
+        <span ><strong>{{ $errors->first('message') }}</strong></span>
+      @endif
+    </div>
+
+    <div class="pt-1 mb-4">
+      <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
+    </div>
+
+
+
+  </form>
+
+
 <div class="mb-4">
         <a href="?filtre=absence" type="button " class="btn btn-primary">Voir tous les absences </a>
         <a href="?filtre=retard" type="button" class="btn btn-primary">Voir tous les retards</a>
@@ -82,11 +127,7 @@
             </tr>
             <tr>
                 <td>Nombre d'heure réalisé /mois</td>
-
-
-                <td>{{ round($sommeTime / 3600) . "H " . ($sommeTime / 60) %60 . "min" . $sommeTime% 60}}</td>
-
-
+                <td>{{ round($sommeTime / 3600) . "H" . ($sommeTime / 60) %60 . "min" . $sommeTime% 60}}</td>
             </tr>
          </tbody>
     </table><br>
