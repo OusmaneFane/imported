@@ -1,6 +1,8 @@
 <?php
 
+use App\Mail\UserEmail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -67,3 +69,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //
 Route::post('/email/index', [LoginController::class, 'envoi'])->name('send.email');
+
+//Mail
+Route::get('send-email', function(){
+    $mailData = [
+        "name" => "Test Name",
+        "dob" => "19/10/2022"
+    ];
+
+    Mail::to('ousmanefane08@gmail.com')->send(new UserEmail($mailData));
+    dd("Mail envoyé avec succès!");
+});
+Route::get('send-email2', [UserController::class, 'mails']);

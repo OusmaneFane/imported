@@ -5,11 +5,13 @@ use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Proof;
+use App\Mail\UserEmail;
 use App\Models\Utilisateur;
 use PhpParser\Builder\Use_;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\PostController;
 
@@ -216,7 +218,17 @@ $PasseUser = $request->session()->get('PasseUser');
         }
     }
 
+    public function mails() {
 
+   
+        $mailData = [
+                "name" => "Test Name",
+                "dob" => "19/10/2022"
+            ];
+
+            Mail::to('ousmanefane08@gmail.com')->send(new UserEmail($mailData));
+            dd("Mail envoyé avec succès!");
+        }
     }
 
 

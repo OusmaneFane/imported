@@ -8,7 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
 
-<form action="{{ route('send.email') }}" method="post">
+{{-- <form action="{{ route('send.email') }}" method="post">
     <div class="results">
         @if(Session::get('fail'))
         <div class="alert alert-danger">
@@ -49,7 +49,7 @@
 
 
 
-  </form>
+  </form> --}}
 
 
 <div class="mb-4">
@@ -131,6 +131,9 @@
             </tr>
          </tbody>
     </table><br>
+    <p>Name: {{ $mailData['name'] }}</p>
+    <p>DOB: {{ $mailData['dob'] }}</p>
+
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button type="button" class="btn btn-primary  mb-6" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Filtrer</button>
     </div>
