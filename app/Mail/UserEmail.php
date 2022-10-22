@@ -11,15 +11,15 @@ class UserEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $mailData;
+    public $contents;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($mailData)
+    public function __construct($contents)
     {
-       $this->mailData = $mailData;
+       $this->contents = $contents;
     }
 
     /**

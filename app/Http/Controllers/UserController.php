@@ -165,6 +165,13 @@ $PasseUser = $request->session()->get('PasseUser');
         $timestampfour = strtotime($timestampthree);
         $sommeTime += $timestampfour - $timestamptwo  ;
     }
+    $mailData = [
+        "name" => $nbre_absent,
+        "dob" => $nbre_retard
+    ];
+
+
+
 
          return view ('posts.verified', ['users'=>$usersWithCongeField,  'nbre_absent'=>$nbre_absent,
                                         'nbre_retard'=>$nbre_retard, 'worktime'=>$worktime, 'nbre_verify'=>$nbre_verify,
@@ -218,16 +225,94 @@ $PasseUser = $request->session()->get('PasseUser');
         }
     }
 
-    public function mails() {
+    public function mails(Request $request) {
 
-   
-        $mailData = [
-                "name" => "Test Name",
-                "dob" => "19/10/2022"
-            ];
 
-            Mail::to('ousmanefane08@gmail.com')->send(new UserEmail($mailData));
+
+            $posts = Post::all();
+            foreach($posts as $post){
+                $users = User::where('no', $post->code);
+
+                $nbre_absent = User::where('no', $post->code)->where('absent', 'True')->count()-6;
+                $nbre_retard = User::where('no', $post->code)->where('late', '!=','')->count();
+                $worktime = User::where('no', $post->code)->where('worktime', '!=','00:00:00')->sum('worktime');
+                $nbre_verify = User::where('no', $post->code)->where('worktime', '!=','00:00:00')->count();
+                $worktimefinal = User::where('worktime', '!=','')->sum('worktime');
+                $somme = 0;
+                if( $request->has('filtre'))
+                {
+                    if($request->query('filtre') == 'absence'){
+                        $users->where('absent', 'True');
+                    }
+                    else if($request->query('filtre') == 'retard'){
+                        $users->where('late', '!=', '');
+                    }
+                    else if($request->query('filtre') == 'verify'){
+                        $users->where('worktime', '!=', '00:00:00');
+                    }
+                }
+
+                else if($request->has('startDate') && $request->has('endDate'))
+                {
+                    $users->whereBetween('date',  [date($request->query('startDate')), date($request->query('endDate'))]);
+                }
+                if($request->has('absent') )
+                {
+                    $users->where('absent', 'True');
+                }
+                if($request->has('late')){
+                    $users->where('late', '!=', '');
+                }
+                if($request->has('present') )
+                {
+                    $users->where('absent', '!=', 'True');
+                }
+
+
+
+
+                $users = $users->get();
+
+                 $usersWithCongeField = [];
+                 $conges = Proof::all();
+                 foreach($conges as $conge){
+                     $startCongeDate = (new Carbon($conge->startDate))->getTimestamp();
+                          $endCongeDate = (new Carbon($conge->endDate))->getTimestamp();
+
+                          foreach($users as $user){
+                             $userAbsentDate = (new Carbon($user->date))->getTimestamp();
+
+                             if($user->no == $conge->code ){
+                                 if($userAbsentDate >= $startCongeDate && $userAbsentDate <= $endCongeDate){
+                                 array_push($usersWithCongeField , array_merge($user->toArray(), ["isCongee" => true ]));
+                             }else{
+                                 array_push($usersWithCongeField , array_merge($user->toArray(), ["isCongee" => false ]));
+                                }
+
+                            }else {
+                                array_push($usersWithCongeField , array_merge($user->toArray(), ["isCongee" => false ]));
+
+                             }
+
+                     }
+            }
+
+            $sommeTime = 0;
+            foreach($usersWithCongeField as $user){
+                $timestampun = $user["clockin"];
+                $timestamptwo = strtotime($timestampun);
+                $timestampthree = $user["clockout"];
+                $timestampfour = strtotime($timestampthree);
+                $sommeTime += $timestampfour - $timestamptwo  ;
+            }
+                $contents = [$nbre_absent, $nbre_retard, $sommeTime];
+
+                Mail::to($post->email)->queue(new UserEmail($contents));
+
+
+            }
             dd("Mail envoyé avec succès!");
+
         }
     }
 

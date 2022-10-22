@@ -6,51 +6,9 @@
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-
-
-{{-- <form action="{{ route('send.email') }}" method="post">
-    <div class="results">
-        @if(Session::get('fail'))
-        <div class="alert alert-danger">
-            {{ Session::get('fail') }}
-        </div>
-        @endif
-    </div>
-        @csrf
- 
-    <div class="form-outline mt-auto">
-        <label class="form-label" for="form2Example17">Email</label>
-      <input type="text" id="form2Example17" name="email" class="form-control form-control-lg" />
-      @if ($errors->has('email'))
-        <span ><strong>{{ $errors->first('email') }}</strong></span>
-      @endif
-
-    </div>
-    <div class="form-outline mt-auto">
-        <label class="form-label" for="form2Example17">Subject</label>
-      <input type="text" id="form2Example17" name="subject" class="form-control form-control-lg" />
-      @if ($errors->has('subject'))
-        <span ><strong>{{ $errors->first('subject') }}</strong></span>
-      @endif
-
-    </div>
-
-    <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example27">Message</label>
-      <input type="text" name="message" id="form2Example27" class="form-control form-control-lg" />
-      @if ($errors->has('message'))
-        <span ><strong>{{ $errors->first('message') }}</strong></span>
-      @endif
-    </div>
-
-    <div class="pt-1 mb-4">
-      <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
-    </div>
-
-
-
-  </form> --}}
-
+<?php
+ob_start()
+?>
 
 <div class="mb-4">
         <a href="?filtre=absence" type="button " class="btn btn-primary">Voir tous les absences </a>
@@ -131,8 +89,6 @@
             </tr>
          </tbody>
     </table><br>
-    <p>Name: {{ $mailData['name'] }}</p>
-    <p>DOB: {{ $mailData['dob'] }}</p>
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button type="button" class="btn btn-primary  mb-6" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Filtrer</button>
@@ -171,13 +127,13 @@
                         <td>{{ $user["no"]     }}</td>
                         <td>{{ $user["name"]      }}</td>
 
-                        <td>{{ date("d-m-Y",(new DateTime($user["date"]))->getTimestamp()) }}
+                        <td><p style="color: red" >{{ date("d-m-Y",(new DateTime($user["date"]))->getTimestamp()) }}
                             {{
                                 $user["isCongee"] ? "(Congé)" : ""
                             }}
 
 
-                         </td>
+                         </p></td>
 
 
                         <td>{{ date('l', strtotime($user["date"]))}}</td>
@@ -204,3 +160,6 @@
 </div>
 
 @endsection
+<?php
+$contents = ob_get_clean();
+?>

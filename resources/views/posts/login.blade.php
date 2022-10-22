@@ -13,9 +13,9 @@
 <body>
 
 
-    <section class="vh-70" style="background-color: #ca415f;">
-       
- 
+    <section class="vh-70" style="background-color: #fff;">
+
+
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-9">
@@ -65,7 +65,7 @@
                           <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
                         </div>
 
-               
+
 
                       </form>
 

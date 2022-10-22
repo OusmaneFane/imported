@@ -10,8 +10,6 @@ use App\Http\Controllers\LoginController;
 
 
  Route::get('/', [PostController::class, 'index']);
-
-
  Route::post('/posts', [PostController::class, 'store'])->name('store');
  Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('edit');
  Route::put('/posts/{post}', [PostController::class, 'update'])->name('update');
@@ -26,9 +24,6 @@ use App\Http\Controllers\LoginController;
  Route::post('/posts/trait', [LoginController::class, 'trait']);
  Route::get('/logout', [LoginController::class, 'logout']);
 
-
-
-
  Route::get('/posts/{id}/filtre ', [UserController::class, 'filtre'])->name('filtre');
  Route::get('/posts/verified/{id}', [UserController::class, 'verified'])->name('verified');
 // Route::get('/posts/export', [PostController::class, 'exportUsers'])->name('export-data');
@@ -36,7 +31,6 @@ use App\Http\Controllers\LoginController;
 //search
 Route::get('/posts/search', [UserController::class, 'search'])->name('search');
 Route::post('/posts/search', [UserController::class, 'data'])->name('data');
-
 //users
 Route::get('/users', [UserController::class, 'list'])->middleware('list');
 Route::post('/import_user', [UserController::class, 'import_user'])->name('import_user');
@@ -48,9 +42,6 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::post('/admins/dashboard', [LoginController::class, 'administrator']);
     Route::get('/', [PostController::class, 'index']);
     Route::get('/posts', [PostController::class, 'index'])->name('board');
-
-
-
   });
 
   // congé
@@ -63,14 +54,9 @@ Route::middleware(['isAdmin'])->group(function () {
 // Route::post('/posts/import',[PostController::class,'import'])->name('import');
 // Route::get('/posts/export-users',[PostController::class,'exportUsers'])->name('export-users');
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//
+////        Mails
 Route::post('/email/index', [LoginController::class, 'envoi'])->name('send.email');
-
-//Mail
 Route::get('send-email', function(){
     $mailData = [
         "name" => "Test Name",
@@ -80,4 +66,5 @@ Route::get('send-email', function(){
     Mail::to('ousmanefane08@gmail.com')->send(new UserEmail($mailData));
     dd("Mail envoyé avec succès!");
 });
+
 Route::get('send-email2', [UserController::class, 'mails']);
