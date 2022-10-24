@@ -165,11 +165,6 @@ $PasseUser = $request->session()->get('PasseUser');
         $timestampfour = strtotime($timestampthree);
         $sommeTime += $timestampfour - $timestamptwo  ;
     }
-    $mailData = [
-        "name" => $nbre_absent,
-        "dob" => $nbre_retard
-    ];
-
 
 
 

@@ -85,7 +85,7 @@ ob_start()
             </tr>
             <tr>
                 <td>Nombre d'heure réalisé /mois</td>
-                <td>{{ round($sommeTime / 3600) . "H" . ($sommeTime / 60) %60 . "min" . $sommeTime% 60}}</td>
+                <td>{{ round($sommeTime / 3600) . "H" . ($sommeTime / 60) %60 . "min" . $sommeTime% 60}}  / 144 Heures</td>
             </tr>
          </tbody>
     </table><br>
