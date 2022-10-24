@@ -182,5 +182,10 @@ public function envoi(Request $request){
             return redirect('posts/login');
         }
     }
+
+    public function recap()
+    {
+        return view('posts.recap');
+    }
 }
 

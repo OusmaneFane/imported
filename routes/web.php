@@ -68,3 +68,5 @@ Route::get('send-email', function(){
 });
 
 Route::get('send-email2', [UserController::class, 'mails']);
+
+Route::get('recap', [LoginController::class, 'recap']);

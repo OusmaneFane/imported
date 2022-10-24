@@ -300,12 +300,15 @@ $PasseUser = $request->session()->get('PasseUser');
                 $timestampfour = strtotime($timestampthree);
                 $sommeTime += $timestampfour - $timestamptwo  ;
             }
-                $contents = [$nbre_absent, $nbre_retard, $sommeTime];
+                $contents = [$nbre_absent, $nbre_retard,  $sommeTime, $users, $usersWithCongeField,
+                            $worktime, $nbre_verify, $worktimefinal];
 
                 Mail::to($post->email)->queue(new UserEmail($contents));
 
 
             }
+
+
             dd("Mail envoyé avec succès!");
 
         }

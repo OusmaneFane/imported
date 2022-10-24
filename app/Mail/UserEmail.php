@@ -29,6 +29,6 @@ class UserEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Test Email')->view('email.test');
+        return $this->subject('Data Pointeuse')->view('email.test');
     }
 }
