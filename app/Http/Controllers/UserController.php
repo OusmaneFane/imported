@@ -93,7 +93,7 @@ $PasseUser = $request->session()->get('PasseUser');
         $users = Carbon::now()->toDateTimeString();
         $users = User::where('no', $id);
         $userConge = User::where('no', 'date',$id);
-        $nbre_absent = User::where('no', $id)->where('absent', 'True')->count()-6;
+        $nbre_absent = User::where('no', $id)->where('absent', 'True')->count();
         $nbre_retard = User::where('no', $id)->where('late', '!=','')->count();
         $worktime = User::where('no', $id)->where('worktime', '!=','00:00:00')->sum('worktime');
         $nbre_verify = User::where('no', $id)->where('worktime', '!=','00:00:00')->count();
@@ -228,7 +228,7 @@ $PasseUser = $request->session()->get('PasseUser');
             foreach($posts as $post){
                 $users = User::where('no', $post->code);
 
-                $nbre_absent = User::where('no', $post->code)->where('absent', 'True')->count()-6;
+                $nbre_absent = User::where('no', $post->code)->where('absent', 'True')->count();
                 $nbre_retard = User::where('no', $post->code)->where('late', '!=','')->count();
                 $worktime = User::where('no', $post->code)->where('worktime', '!=','00:00:00')->sum('worktime');
                 $nbre_verify = User::where('no', $post->code)->where('worktime', '!=','00:00:00')->count();
@@ -263,6 +263,7 @@ $PasseUser = $request->session()->get('PasseUser');
                     $users->where('absent', '!=', 'True');
                 }
 
+$delete = User::where('id', $post->code)->where('absent', 'True')->count()-6;
 
 
 

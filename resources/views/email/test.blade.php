@@ -17,8 +17,7 @@ ob_start()
     <p>Name: {{ $mailData['name'] }}</p>
     <p>DOB: {{ $mailData['dob'] }}</p> --}}
 
-    <h1 style="color: black; text-align:center;">Recap Pointeuse: Septembre 2022</h1>
-    <p>test</p>
+    <h1 style="color: black; text-align:center;">RECAP POINTEUSE: OCTOBRE 2022</h1>
 <table  class="display nowrap dataTable dtr-inline collapsed table table-bordered " style=" border-collapse: collapse; width: 100%">
 
     {{-- <style>
@@ -63,7 +62,7 @@ ob_start()
 </table><br>
 
 @if( $contents[0] > 0)
-<h2>Merci de justifier vos absences auprès du RH.</h2>
+<h4>Merci de justifier vos absences auprès du RH.</h4>
 @endif
 
 
@@ -80,7 +79,7 @@ ob_start()
                 {{-- <th scope="col" style=" padding: 4px; text-align: left; border-bottom: 1px solid #ddd;">onduty</th>
                 <th scope="col" style=" padding: 4px; text-align: left; border-bottom: 1px solid #ddd;">offduty</th> --}}
                 <th scope="col"  style="text-align: left ; padding: 4px;  background-color: #ff3763; color: white; border: 1px solid #ddd; text-align: left;">Jour correspondant</th>
-                <th scope="col"  style="text-align: left ; padding: 4px;  background-color: #ff3763; color: white; border: 1px solid #ddd; text-align: left;">Jour de travail</th>
+                {{-- <th scope="col"  style="text-align: left ; padding: 4px;  background-color: #ff3763; color: white; border: 1px solid #ddd; text-align: left;">Jour de travail</th> --}}
                 {{-- <th scope="col"  style="text-align: left ; padding: 4px;  background-color: #ff3763; color: white;">Clockout</th> --}}
                 {{-- <th scope="col"  style="text-align: left ; padding: 4px;  background-color: #ff3763; color: white;">normal</th> --}}
                 {{-- <th scope="col"  style="text-align: left ; padding: 4px;  background-color: #ff3763; color: white;">realtime</th> --}}
@@ -108,9 +107,12 @@ ob_start()
 
                          </p></td>
 
+                         @if(date('l', strtotime($user["date"])) == "Saturday")
+                         <td  style="text-align: left; padding: 4px; border: 1px solid #ddd; text-align: left;">{{ date('l', strtotime($user["date"]))->except(['Saturday'])}}</td>
 
+                         @endif
                         <td  style="text-align: left; padding: 4px; border: 1px solid #ddd; text-align: left;">{{ date('l', strtotime($user["date"]))}}</td>
-                        <td  style="text-align: left; padding: 4px; border: 1px solid #ddd; text-align: left;">{{ $user["timetable"] }}</td>
+                        {{-- <td  style="text-align: left; padding: 4px; border: 1px solid #ddd; text-align: left;">{{ $user["timetable"] }}</td> --}}
 
                         <td  style="text-align: left; padding: 4px; border: 1px solid #ddd; text-align: left;">{{ $user["late"]      }}</td>
                         <td  style="text-align: left; padding: 4px; border: 1px solid #ddd; text-align: left;">{{ $user["absent"]    }}</td>

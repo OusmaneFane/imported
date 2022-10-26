@@ -17,9 +17,11 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
-           $table->string('poste');
-           $table->string('email');
-           $table->string('code');
+            $table->string('poste');
+            $table->string('email');
+            $table->string('code');
+            $table->string('status')->nullable();
+
             $table->timestamps();
         });
 

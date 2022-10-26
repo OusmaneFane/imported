@@ -132,7 +132,6 @@ ob_start()
                                 $user["isCongee"] ? "(Congé)" : ""
                             }}
 
-
                          </p></td>
 
 
