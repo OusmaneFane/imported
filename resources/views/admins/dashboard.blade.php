@@ -61,7 +61,7 @@
 
                                             {{-- Filtre --}}
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button type="button" class="btn btn-primary  mb-6" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Filtrer</button>
+        <button type="button" class="btn btn-warning  mb-6" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-funnel-fill"></i> Filtrer</button>
 </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -132,7 +132,7 @@
                     <input class="form-check-input" type="checkbox" value="late" name="present" id="flexCheckChecked" >
                     <label class="form-check-label" for="flexCheckChecked">
                      Présent
-                    </label>x
+                    </label>
                   </div>
 
 

@@ -45,7 +45,7 @@
 
               </div><br>
 
-            <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shaadow-1g
+            <button class="btn btn-success  text-white px-6 py-2 inline-block mb-6 shaadow-1g
             rounded hover:shadow">Ajouter </button>
 
 

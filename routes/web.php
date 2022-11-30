@@ -40,6 +40,8 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::get('/posts/create', [PostController::class, 'create'])->name('create');
     Route::get('/admins/dashboard', [LoginController::class, 'administrator']);
     Route::post('/admins/dashboard', [LoginController::class, 'administrator']);
+    Route::get('/admins/dash2', [LoginController::class, 'admin2']);
+
     Route::get('/', [PostController::class, 'index']);
     Route::get('/posts', [PostController::class, 'index'])->name('board');
   });

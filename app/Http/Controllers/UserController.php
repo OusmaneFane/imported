@@ -223,7 +223,7 @@ $PasseUser = $request->session()->get('PasseUser');
     public function mails(Request $request) {
 
 
-
+        
             $posts = Post::all();
             foreach($posts as $post){
                 $users = User::where('no', $post->code);

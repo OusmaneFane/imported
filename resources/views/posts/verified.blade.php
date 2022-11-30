@@ -85,13 +85,13 @@ ob_start()
             </tr>
             <tr>
                 <td>Nombre d'heure réalisé /mois</td>
-                <td>{{ round($sommeTime / 3600) . "H" . ($sommeTime / 60) %60 . "min" . $sommeTime% 60}}  / 144 Heures</td>
+                <td>{{ round($sommeTime / 3600) . "H" . ($sommeTime / 60) %60 . "min" . $sommeTime% 60 . "s"}} </td>
             </tr>
          </tbody>
     </table><br>
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button type="button" class="btn btn-primary  mb-6" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Filtrer</button>
+        <button type="button" class="btn btn-warning  mb-6" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-funnel-fill"></i>Filtrer</button>
     </div>
 
 <div class="row">

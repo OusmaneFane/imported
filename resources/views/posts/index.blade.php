@@ -53,15 +53,15 @@
                     {{-- <td>{{ $post->email }}</td> --}}
                     <td>{{ $post->code }}</td>
                     <td>
-                        <a href="/posts/{{ $post->id }}/edit" class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-2 shaadow-1g
-                            rounded hover:shadow">Modifier </a>
+                        <a href="/posts/{{ $post->id }}/edit" class="bg-yellow-500 ml-5 tracking-wide text-white px-2 py-1  shaadow-1g
+                            rounded hover:shadow"><i class="bi bi-pencil-square"></i> </a>
                     </td>
                     <td>
                         <form method="POST" action="/posts/{{ $post->id }}">
                             @csrf
                         @method('DELETE')
-                        <button  class="bg-red-500 ml-4 tracking-wide text-white px-6 py-2 inline-block mb-2 shaadow-1g
-                        rounded hover:shadow">Supprimer </button>
+                        <button  class="bg-red-500 ml-5 tracking-wide text-white px-2 py-1  shaadow-1g
+                        rounded hover:shadow"><i class="bi bi-trash-fill"></i> </button>
                         </form>
                     </td>
                   </tr>

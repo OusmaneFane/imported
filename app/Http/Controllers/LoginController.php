@@ -17,6 +17,9 @@ use App\Http\Controllers\UserController;
 
 class LoginController extends Controller
 {
+    public function admin2(){
+        return view('/admins/dash2');
+    }
 
 public function envoi(Request $request){
     request()->validate([
