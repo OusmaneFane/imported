@@ -163,8 +163,20 @@ $PasseUser = $request->session()->get('PasseUser');
         $timestamptwo = strtotime($timestampun);
         $timestampthree = $user["clockout"];
         $timestampfour = strtotime($timestampthree);
-        $sommeTime += $timestampfour - $timestamptwo  ;
+        $sommeTime += $timestampfour - $timestamptwo;
+
     }
+    foreach($users as $user){
+                $query = DB::table('users')
+                       ->where('name', '!=', 'TIGUIDA SISSOKO')
+                       ->where('name', '!=', 'FOUDO SIBY')
+                       ->where('timetable', 'Samedi')
+                       ->delete();
+            
+        }
+
+
+
 
 
 
@@ -223,7 +235,7 @@ $PasseUser = $request->session()->get('PasseUser');
     public function mails(Request $request) {
 
 
-        
+
             $posts = Post::all();
             foreach($posts as $post){
                 $users = User::where('no', $post->code);
