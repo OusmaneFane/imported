@@ -27,7 +27,7 @@ $PasseUser = $request->session()->get('PasseUser');
         $utilisateur = Utilisateur::where('id', '=', session('PasseUser'))->first();
         $users = User::where('no', '!=', null);
         $userstwo = DB::table('users')->distinct()->get();
-        $nbre_absent = User::where('absent', 'True')->count()-4;
+        $nbre_absent = User::where('absent', 'True')->count();
         $nbre_retard = User::where('late', '!=','')->count();
         $worktime = User::where('worktime', '!=','')->sum(('worktime'));
 
@@ -172,7 +172,7 @@ $PasseUser = $request->session()->get('PasseUser');
                        ->where('name', '!=', 'FOUDO SIBY')
                        ->where('timetable', 'Samedi')
                        ->delete();
-            
+
         }
 
 

@@ -129,7 +129,7 @@ ob_start()
 
                         <td><p style="color: red" >{{ date("d-m-Y",(new DateTime($user["date"]))->getTimestamp()) }}
                             {{
-                                $user["isCongee"] ? "(Congé)" : ""
+                                $user["isCongee"] ? "(Justifié)" : ""
                             }}
 
                          </p></td>

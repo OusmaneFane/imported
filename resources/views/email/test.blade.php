@@ -16,8 +16,9 @@ ob_start()
     {{-- <h1>Test Email</h1>
     <p>Name: {{ $mailData['name'] }}</p>
     <p>DOB: {{ $mailData['dob'] }}</p> --}}
-
-    <h1 style="color: black; text-align:center;">RECAP POINTEUSE: OCTOBRE 2022</h1>
+    <img src="/images/logo3.png"
+    alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+    <h1 style="color: black; text-align:center;">RECAP POINTEUSE: NOVEMBRE 2022</h1>
 <table  class="display nowrap dataTable dtr-inline collapsed table table-bordered " style=" border-collapse: collapse; width: 100%">
 
     {{-- <style>
